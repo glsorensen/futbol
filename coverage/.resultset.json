@@ -1,11 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-<<<<<<< HEAD
-      "/Users/jesseochs/turing/1module/projects/futbol/lib/stat_tracker.rb": {
-=======
       "/Users/conorbarthel/turing/1module/futbol_project/futbol/lib/stat_tracker.rb": {
->>>>>>> fe99d7ee4170ff126273cc583d3a940dd8f484ce
         "lines": [
           1,
           1,
@@ -32,10 +28,39 @@
         ]
       }
     },
-<<<<<<< HEAD
-    "timestamp": 1641350010
-=======
     "timestamp": 1641331866
->>>>>>> fe99d7ee4170ff126273cc583d3a940dd8f484ce
+<<<<<<< HEAD
+  },
+  "Unknown Test Framework": {
+    "coverage": {
+      "/Users/conorbarthel/turing/1module/futbol_project/futbol/lib/stat_tracker.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/conorbarthel/turing/1module/futbol_project/futbol/lib/parsable.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null
+        ]
+      }
+    },
+    "timestamp": 1641396728
+=======
+>>>>>>> a0a72ae16e4f479618b004d335c03a7a6c16cb59
   }
 }
