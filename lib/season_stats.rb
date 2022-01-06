@@ -53,14 +53,17 @@ class SeasonStats
   end
 
   def sort_by_win_percent
-    #binding.pry
     coach_records.sort_by do |coach|
       coach.win_percentage
     end
   end
 
   def winningest_coach
+    sort_by_win_percent[-1].name
+  end
 
+  def losingest_coach
+    sort_by_win_percent[0].name
   end
 
 end
