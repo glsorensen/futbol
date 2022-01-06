@@ -1,7 +1,8 @@
 class Coach
-  attr_reader :wins, :games
+  attr_reader :name, :wins, :games
 
   def initialize(record)
+    @name = record[:name]
     @wins = record[:wins]
     @games = record[:games]
   end

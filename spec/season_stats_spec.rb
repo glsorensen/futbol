@@ -1,5 +1,6 @@
 require './lib/season_stats'
 require 'csv'
+require './lib/coach'
 RSpec.describe do
   let(:game_path) {'./data/games_sample.csv'}
   let(:team_path) {'./data/teams.csv'}
@@ -37,12 +38,25 @@ RSpec.describe do
     expect(season_stats.get_season_rows(baby_data, :game_id).size).to eq(2)
   end
 
-  it "gets coaches from array" do
+  it "gets coaches array" do
     season_stats.games_in_season(game_path, "20122013")
     season_stats.get_season_rows(game_teams_path, :game_id)
     expected = ["John Tortorella", "Claude Julien", "Mike Babcock", "Joel Quenneville", "Mike Yeo"]
 
     expect(season_stats.get_coaches_arr).to eq(expected)
+  end
+
+  it "transforms coaches array to coach classes" do
+    season_stats.games_in_season(game_path, "20122013")
+    season_stats.get_season_rows(game_teams_path, :game_id)
+    expect(season_stats.coach_classes[0]).to be_a(Coach)
+  end
+
+  xit "finds coaches win percentages" do
+    season_stats.games_in_season(game_path, "20122013")
+    season_stats.get_season_rows(game_teams_path, :game_id)
+
+    expect(season_stats.coaches_win_percentages[0]).to eq(0)
   end
   xit "winningest_coach" do
 

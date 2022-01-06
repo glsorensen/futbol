@@ -1,4 +1,5 @@
 require 'parsable'
+require './lib/coach'
 class SeasonStats
   include Parsable
   attr_reader :games, :teams, :game_teams
@@ -30,4 +31,16 @@ class SeasonStats
       data[:head_coach]
     end.uniq
   end
+
+  def coach_classes
+    get_coaches_arr.map do |coach|
+      Coach.new({name:coach, wins:0, games:0})
+    end
+  end
+  # def coaches_win_percentages
+  #   get_coaches_arr.each do |variable|
+  #
+  #   end
+  #
+  # end
 end
