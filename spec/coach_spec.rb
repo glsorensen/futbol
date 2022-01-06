@@ -20,7 +20,7 @@ RSpec.describe 'coach' do
 
   it "can add one to wins" do
     coach.add_win
-    expect(coach.wins).to eq(11)
+    expect(coach.wins).to eq(6)
   end
 
   it "calculates win percentage" do
