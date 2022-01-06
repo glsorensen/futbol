@@ -2,12 +2,13 @@ require './lib/parsable.rb'
 class StatTracker
   include Parsable
 
-    def initialize(location)
-      # @game_stats = GameStats.new(location)
-      # @league_stats = LeagueStats.new(location)
-      # @season_stats = SeasonStats.new(location)
-      # @team_stats = TeamStats.new(location)
-    end
+  def initialize(location)
+    @hash_data = HashData.new
+    @league_stats = LeagueStats.new
+    @game_stats = GameStats.new
+    @season_stats = SeasonStats.new
+    @team_stats = TeamStats.new
+  end
 
     def highest_total_score
       #game_statistic
@@ -42,7 +43,7 @@ class StatTracker
     end
 
     def count_of_teams
-      #league_statistics
+      #game_statistic
     end
 
     def best_offense
