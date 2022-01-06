@@ -4,10 +4,6 @@ class StatTracker
 
   def initialize(location)
     @hash_data = HashData.new
-    @league_stats = LeagueStats.new
-    @game_stats = GameStats.new
-    @season_stats = SeasonStats.new
-    @team_stats = TeamStats.new
   end
 
     def highest_total_score
