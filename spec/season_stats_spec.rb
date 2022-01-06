@@ -66,8 +66,16 @@ RSpec.describe do
     expect(season_stats.sort_by_win_percent[0].name).to eq("John Tortorella")
     expect(season_stats.sort_by_win_percent[-1].name).to eq("Joel Quenneville")
   end
-  
-  xit "winningest_coach" do
 
+  it "finds winningest coach" do
+    season_stats.games_in_season(game_path, "20122013")
+    season_stats.get_season_rows(game_teams_path, :game_id)
+    expect(season_stats.winningest_coach).to eq("Joel Quenneville")
+  end
+
+  it "finds losingest coach" do
+    season_stats.games_in_season(game_path, "20122013")
+    season_stats.get_season_rows(game_teams_path, :game_id)
+    expect(season_stats.losingest_coach).to eq("John Tortorella")
   end
 end
