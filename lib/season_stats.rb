@@ -10,17 +10,17 @@ class SeasonStats
     @game_teams = location[:game_teams]
   end
 
-  def games_in_season(csv, season)
+  def games_in_season(season)
     @game_ids = []
-    parse(csv).filter do |row|
+    parse(@games).filter do |row|
       @game_ids << row[:game_id] if row[:season] == season
     end
     @game_ids
   end
 
-  def get_season_rows(csv, header)
+  def get_season_rows(header)
     @season_data = []
-    parse(csv).filter do |row|
+    parse(@game_teams).filter do |row|
       @season_data << row if @game_ids.any?(row[header])
     end
     @season_data
@@ -65,5 +65,4 @@ class SeasonStats
   def losingest_coach
     sort_by_win_percent[0].name
   end
-
 end
