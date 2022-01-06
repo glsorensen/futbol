@@ -3,7 +3,7 @@ class StatTracker
   include Parsable
 
   def initialize(location)
-    @hash_data = HashData.new
+    @hash_data = HashData.new(location)
   end
 
     def highest_total_score
