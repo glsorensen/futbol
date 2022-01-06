@@ -37,10 +37,30 @@ class SeasonStats
       Coach.new({name:coach, wins:0, games:0})
     end
   end
-  # def coaches_win_percentages
-  #   get_coaches_arr.each do |variable|
-  #
-  #   end
-  #
-  # end
+
+  def coach_records
+    coach_classes.map do |coach|
+      @season_data.each do |data|
+        if data[:head_coach] == coach.name
+          coach.add_game
+          if data[:result] == "WIN"
+            coach.add_win
+          end
+        end
+      end
+      coach
+    end
+  end
+
+  def sort_by_win_percent
+    #binding.pry
+    coach_records.sort_by do |coach|
+      coach.win_percentage
+    end
+  end
+
+  def winningest_coach
+
+  end
+
 end

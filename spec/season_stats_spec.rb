@@ -52,12 +52,21 @@ RSpec.describe do
     expect(season_stats.coach_classes[0]).to be_a(Coach)
   end
 
-  xit "finds coaches win percentages" do
+  it "records coaches records" do
     season_stats.games_in_season(game_path, "20122013")
     season_stats.get_season_rows(game_teams_path, :game_id)
 
-    expect(season_stats.coaches_win_percentages[0]).to eq(0)
+    expect(season_stats.coach_records[0].games).to eq(2)
   end
+
+  it "sorts the coaches by win percentage" do
+    season_stats.games_in_season(game_path, "20122013")
+    season_stats.get_season_rows(game_teams_path, :game_id)
+
+    expect(season_stats.sort_by_win_percent[0].name).to eq("John Tortorella")
+    expect(season_stats.sort_by_win_percent[-1].name).to eq("Joel Quenneville")
+  end
+  
   xit "winningest_coach" do
 
   end
