@@ -5,6 +5,7 @@ RSpec.describe do
   let(:team_path) {'./data/teams.csv'}
   let(:game_teams_path) {'./data/game_teams.csv'}
   let(:baby_games) {'./data/baby_games.csv'}
+  let(:baby_data) {'./data/baby_data.csv'}
   let(:locations) {{
     games: game_path,
     teams: team_path,
@@ -26,13 +27,17 @@ RSpec.describe do
     expect(season_stats.parse(season_stats.games)).to eq(game_path)
   end
 
-  it "filter_by_season" do
-    expectation = [2012030221, 2012030222]
-    expect(season_stats.criteria_filter(baby_games, :game_id, 20122013)).to eq(expectation)
-    # expect(season_stats.get_key_value(baby_games, :season)).to eq(expectation)
+  it "can find game_ids based on season" do
+    expectation = ["2012030221", "2012030222"]
+    expect(season_stats.games_in_season(baby_games, "20122013")).to eq(expectation)
   end
 
-  it "gets all game ids from given season" do
+  it "gets rows based on season" do
+    season_stats.games_in_season(baby_games, "20122013")
+    expect(season_stats.get_season_rows(baby_data, :game_id, "20122013").size).to eq(2)
+  end
+
+  it "get_coaches_arr" do
 
   end
   xit "winningest_coach" do
