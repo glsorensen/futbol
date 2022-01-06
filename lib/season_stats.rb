@@ -17,7 +17,7 @@ class SeasonStats
     @game_ids
   end
 
-  def get_season_rows(csv, header, season)
+  def get_season_rows(csv, header)
     @season_data = []
     parse(csv).filter do |row|
       @season_data << row if @game_ids.any?(row[header])
@@ -25,4 +25,9 @@ class SeasonStats
     @season_data
   end
 
+  def get_coaches_arr
+    @season_data.map do |data|
+      data[:head_coach]
+    end.uniq
+  end
 end
