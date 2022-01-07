@@ -1,5 +1,5 @@
 require './spec/spec_helper'
-require 'csv'
+
 RSpec.describe do
   let(:game_path) {'./data/games.csv'}
   let(:team_path) {'./data/teams.csv'}

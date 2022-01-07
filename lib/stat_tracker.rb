@@ -1,9 +1,14 @@
-require './lib/parsable.rb'
-class StatTracker
-  include Parsable
+require './spec/spec_helper'
 
-  def initialize(location)
-    @hash_data = HashData.new(location)
+class StatTracker
+
+  def initialize(data_location)
+    @hash_data = HashData.new(data_location)
+    # @game_stats = GameStats.new
+    # @league_stats = LeagueStats.new
+    # @team_stats = TeamStats.new
+    # @season_stats = SeasonStats.new
+
   end
 
     def highest_total_score

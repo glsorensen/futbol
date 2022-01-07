@@ -1,16 +1,14 @@
-require 'parsable'
-class GameStats
-  include Parsable
+require './spec/spec_helper'
+
+class GameStats < HashData
+  # include Parsable
   attr_reader :games, :teams, :game_teams
 
-  def initialize(location)
-    @games = location[:games]
-    @teams = location[:teams]
-    @game_teams = location[:game_teams]
+  def initialize
   end
 
   def highest_total_score
-    #game_statistic
+    @games
   end
 
   def lowest_total_score

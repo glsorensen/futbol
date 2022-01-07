@@ -1,5 +1,4 @@
-require 'csv'
-require 'pry'
+
 module Parsable
   @game_teams_path = ./data/game_teams.csv
 
