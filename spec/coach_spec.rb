@@ -24,4 +24,8 @@ RSpec.describe 'coach' do
   it "calculates win percentage" do
     expect(coach.win_percentage).to eq(50.0)
   end
+
+  it "text" do
+
+  end
 end

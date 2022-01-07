@@ -13,5 +13,7 @@ RSpec.describe do
     expect(team.goals).to eq 5
   end
 
-  
+  it "calculates win percentage" do
+    expect(team.win_percentage).to eq(56)
+  end
 end

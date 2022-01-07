@@ -1,6 +1,7 @@
 require './lib/season_stats'
 require 'csv'
 require './lib/coach'
+require './lib/team.rb'
 RSpec.describe do
   let(:game_path) {'./data/games_sample.csv'}
   let(:team_path) {'./data/teams.csv'}
@@ -66,7 +67,7 @@ RSpec.describe do
     expect(season_stats.coach_classes[0]).to be_a(Coach)
   end
 
-  it "records coaches records" do
+  it "creates array of coaches records" do
     expect(season_stats.coach_records[0].games).to eq(2)
   end
 
@@ -81,5 +82,9 @@ RSpec.describe do
 
   it "finds losingest coach" do
     expect(season_stats.losingest_coach).to eq("John Tortorella")
+  end
+
+  it "creates an array of team classes" do
+
   end
 end

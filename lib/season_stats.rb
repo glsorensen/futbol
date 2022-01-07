@@ -75,4 +75,6 @@ class SeasonStats
   def losingest_coach
     sort_by_win_percent[0].name
   end
+
+  
 end
