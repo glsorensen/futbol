@@ -1,4 +1,4 @@
-require './spec_helper'
+
 
 RSpec.describe 'StatTracker' do
   let(:game_path) {'./data/games.csv'}
@@ -27,4 +27,41 @@ RSpec.describe 'StatTracker' do
 
     expect(stat_tracker.criteria_filter(baby_data, :result, "LOSS").size).to eq(3)
   end
+
+  # it 'can hash values' do
+  #
+  #   expect(stat_tracker.hash_by(baby_data, :team_id)).to be true
+  # end
+
+  it 'win can count specific row data' do
+
+    expect(stat_tracker.count_hashed_by(game_teams_path, :team_id, '6', "WIN")).to eq 251
+  end
+
+  it 'lose can count specific row data' do
+
+    expect(stat_tracker.count_hashed_by(game_teams_path, :team_id, '6', "LOSS")).to eq 150
+  end
+  it 'tie can count specific row data' do
+
+    expect(stat_tracker.count_hashed_by(game_teams_path, :team_id, '6', "TIE")).to eq 109
+
+  end
+
+  it 'can count wins' do
+
+    expect(stat_tracker.count_wins('6')).to eq 251
+  end
+
+  it 'can count losses' do
+
+    expect(stat_tracker.count_losses('6')).to eq 150
+  end
+
+  it 'can count ties' do
+
+    expect(stat_tracker.count_ties('6')).to eq 109
+  end
+
+
 end
