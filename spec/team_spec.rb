@@ -13,7 +13,13 @@ RSpec.describe do
     expect(team.goals).to eq 5
   end
 
+  it "can record game data" do
+    team.play_game(4, 2)
+    expect(team.shots).to eq(13)
+    expect(team.goals).to eq(7)
+  end
+
   it "calculates win percentage" do
-    expect(team.win_percentage).to eq(56)
+    expect(team.win_percentage).to eq(55.6)
   end
 end
