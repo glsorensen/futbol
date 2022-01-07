@@ -94,6 +94,10 @@ RSpec.describe do
     expect(season_stats.sort_by_goal_percent[-1].team_id).to eq("17")
   end
 
+  it "can convert team ids into team names" do
+    expect(season_stats.name_convert("1")).to eq("Atlanta United")
+  end
+
   it "finds the team that scores the most of their shots" do
     expect(season_stats.scoringest_team).to eq("LA Galaxy")
   end

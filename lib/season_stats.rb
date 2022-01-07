@@ -96,6 +96,14 @@ class SeasonStats
     end
   end
 
+  def name_convert(team_id)
+    parse(@teams).each do |row|
+      if row[:team_id] == team_id
+        return row[:teamname]
+      end
+    end
+  end
+
   def scoringest_team
 
   end
