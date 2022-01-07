@@ -1,5 +1,5 @@
-# require './spec/spec_helper'
-require './lib/games.rb'
+require './spec/spec_helper'
+
 
 RSpec.describe 'Games' do
  let(:game) {Games.new('./data/games.csv')}
