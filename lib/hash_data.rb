@@ -7,16 +7,11 @@ class HashData
   attr_reader :games, :teams, :game_teams
 
   def initialize(data)
-    @games = CSV.read(data[:games], headers: true, header_converters: :symbol).group_by {|row| Games.new(row)}
-    @games = CSV.read(data[:games], headers: true, header_converters: :symbol).map {|row| Games.new(row)}
-    @teams = CSV.read(data[:teams], headers: true, header_converters: :symbol).map {|row| Teams.new(row)}
-    @game_teams = CSV.read(data[:game_teams], headers: true, header_converters: :symbol).map {|row| GameTeams.new(row)}
+    @hash = {}
+    @games = CSV.read(data[:games], headers: true, header_converters: :symbol).each { |row| @hash[row[:game_id]] = Games.new(row) }
+    @teams = CSV.read(data[:teams], headers: true, header_converters: :symbol).each { |row| @hash[row[:team_id]] = Teams.new(row) }
+    @game_teams = CSV.read(data[:game_teams], headers: true, header_converters: :symbol).each { |row| @hash[row[:game_id]] = GameTeams.new(row) }
   end
 
-  def hash(object)
-    object.group_by {|row| row}
-  end
 
 end
-
-# @games = CSV.parse(File.read(data[:games]), headers: true, header_converters: :symbol).map {|row| Game.new(row)}
