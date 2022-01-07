@@ -6,9 +6,9 @@ attr_reader :game_id,
             :away_team_id,
             :home_team_id,
             :away_goals,
-            :home_goals
-            :date_time
-            :venue
+            :home_goals,
+            :date_time,
+            :venue,
             :venue_link
 
   def initialize(data)

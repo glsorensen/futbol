@@ -1,14 +1,15 @@
-require './spec/spec_helper'
+require './lib/hash_data.rb'
 
 class GameStats < HashData
   # include Parsable
-  attr_reader :games, :teams, :game_teams
+  # game_statisticattr_reader :games, :teams, :game_teams
 
   def initialize
+    super(games)
   end
 
   def highest_total_score
-    @games
+    @games[0]
   end
 
   def lowest_total_score

@@ -12,3 +12,5 @@ class HashData
     @game_teams = CSV.read(data[:game_teams], headers: true, header_converters: :symbol).map {|row| GameTeams.new(row)}
   end
 end
+
+# @games = CSV.parse(File.read(data[:games]), headers: true, header_converters: :symbol).map {|row| Game.new(row)}
