@@ -2,13 +2,13 @@ require './lib/hash_data.rb'
 require './lib/game_stats'
 
 RSpec.describe 'GameStats' do
-  let(:games_data) {'./data/games.csv'}
-  let(:teams_data) {'./data/teams.csv'}
-  let(:game_teams_data) {'./data/game_teams.csv'}
+  let(:games) {'./data/games.csv'}
+  let(:teams) {'./data/teams.csv'}
+  let(:game_teams) {'./data/game_teams.csv'}
   let(:data) {{
-        :games => games_data,
-        :teams => teams_data,
-        :game_teams => game_teams_data
+        :games => games,
+        :teams => teams,
+        :game_teams => game_teams
     }}
     let(:hash_data) {HashData.new(data)}
     let(:game_stats) {GameStats.new}

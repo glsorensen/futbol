@@ -1,15 +1,14 @@
 require './lib/hash_data.rb'
 
 class GameStats < HashData
-  # include Parsable
-  # game_statisticattr_reader :games, :teams, :game_teams
+
 
   def initialize
     super(games)
   end
 
   def highest_total_score
-    @games[0]
+    
   end
 
   def lowest_total_score
