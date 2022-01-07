@@ -1,6 +1,7 @@
-require './lib/parsable.rb'
+require './spec/spec_helper'
+
 class StatTracker
-  include Parsable
+  # include Parsable
 
   def initialize(location)
     @hash_data = HashData.new(location)

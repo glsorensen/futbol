@@ -1,4 +1,4 @@
-require './spec/spec_helper'
+
 
 RSpec.describe 'StatTracker' do
   let(:game_path) {'./data/games.csv'}

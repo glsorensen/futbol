@@ -1,8 +1,4 @@
-require 'csv'
-require 'game_stats'
-require 'league_stats'
-require 'season_stats'
-require 'team_stats'
+require './spec/spec_helper'
 
 class HashData
   attr_reader :games, :teams, :game_teams

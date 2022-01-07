@@ -1,6 +1,7 @@
-require 'parsable'
+require './spec/spec_helper'
+
 class GameStats
-  include Parsable
+  # include Parsable
   attr_reader :games, :teams, :game_teams
 
   def initialize(location)

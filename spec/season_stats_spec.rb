@@ -1,6 +1,5 @@
-require './lib/season_stats'
-require 'csv'
-require './lib/coach'
+require './spec/spec_helper'
+
 RSpec.describe do
   let(:game_path) {'./data/games_sample.csv'}
   let(:team_path) {'./data/teams.csv'}
