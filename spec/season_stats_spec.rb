@@ -2,6 +2,7 @@ require './lib/season_stats'
 require 'csv'
 require './lib/coach'
 require './lib/team.rb'
+require 'pry'
 RSpec.describe do
   let(:game_path) {'./data/games_sample.csv'}
   let(:team_path) {'./data/teams.csv'}
@@ -85,6 +86,11 @@ RSpec.describe do
   end
 
   it "creates an array of team classes" do
+    expect(season_stats.team_data[0].goals).to eq(4)
+  end
 
+  it "sorts by goal percentage" do
+    expect(season_stats.sort_by_goal_percent[0].team_id).to eq("16")
+    expect(season_stats.sort_by_goal_percent[-1].team_id).to eq("17")
   end
 end

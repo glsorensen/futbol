@@ -1,6 +1,6 @@
-require './spec/spec_helper'
+#require './spec/spec_helper'
 
-class SeasonStats < HashData
+class SeasonStats
   # include Parsable
   attr_reader :games, :teams, :game_teams
 
@@ -8,6 +8,10 @@ class SeasonStats < HashData
     @games = location[:games]
     @teams = location[:teams]
     @game_teams = location[:game_teams]
+  end
+
+  def parse(csv)
+    CSV.read csv, headers: true, header_converters: :symbol
   end
 
   def games_in_season(season)
@@ -76,5 +80,19 @@ class SeasonStats < HashData
     sort_by_win_percent[0].name
   end
 
-  
+  def team_data
+    x = @season_data.reduce({}) do |teams, game|
+      team_id = game[:team_id]
+      team = teams[team_id] || Team.new({team_id: team_id, shots: 0, goals: 0})
+      team.play_game(game[:shots].to_i, game[:goals].to_i)
+      teams[team_id] = team
+      teams
+    end.values
+  end
+
+  def sort_by_goal_percent
+    team_data.sort_by do |team|
+      team.goal_percentage
+    end
+  end
 end
