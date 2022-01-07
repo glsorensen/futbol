@@ -26,30 +26,40 @@ class SeasonStats
     @season_data
   end
 
-  def get_coaches_arr
-    @season_data.map do |data|
-      data[:head_coach]
-    end.uniq
-  end
+  # def get_coaches_arr
+  #   @season_data.map do |data|
+  #     data[:head_coach]
+  #   end.uniq
+  # end
+  #
+  # def coach_classes
+  #   get_coaches_arr.map do |coach|
+  #     Coach.new({name:coach, wins:0, games:0})
+  #   end
+  # end
 
-  def coach_classes
-    get_coaches_arr.map do |coach|
-      Coach.new({name:coach, wins:0, games:0})
-    end
-  end
+  # def coach_records
+  #   coach_classes.map do |coach|
+  #     @season_data.each do |data|
+  #       if data[:head_coach] == coach.name
+  #         coach.add_game
+  #         if data[:result] == "WIN"
+  #           coach.add_win
+  #         end
+  #       end
+  #     end
+  #     coach
+  #   end
+  # end
 
   def coach_records
-    coach_classes.map do |coach|
-      @season_data.each do |data|
-        if data[:head_coach] == coach.name
-          coach.add_game
-          if data[:result] == "WIN"
-            coach.add_win
-          end
-        end
-      end
-      coach
-    end
+    @season_data.reduce({}) do |coaches, game|
+      coach_name = game[:head_coach]
+      coach = coaches[coach_name] || Coach.new({name: coach_name, wins: 0, games: 0})
+      coach.play_game(game[:result])
+      coaches[coach_name] = coach
+      coaches
+    end.values
   end
 
   def sort_by_win_percent

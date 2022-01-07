@@ -13,14 +13,12 @@ RSpec.describe 'coach' do
     expect(coach.games).to eq(10)
   end
 
-  it "can add one to games" do
-    coach.add_game
-    expect(coach.games).to eq(11)
-  end
-
-  it "can add one to wins" do
-    coach.add_win
+  it "can record games played and won" do
+    coach.play_game("WIN")
+    coach.play_game("TIE")
+    coach.play_game("LOSE")
     expect(coach.wins).to eq(6)
+    expect(coach.games).to eq(13)
   end
 
   it "calculates win percentage" do
