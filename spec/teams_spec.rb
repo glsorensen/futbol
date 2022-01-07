@@ -1,10 +1,11 @@
-require './spec/spec_helper'
+require './lib/teams'
 
 RSpec.describe 'Teams' do
- let(:game) {Teams.new('./data/teams.csv')}
+  let(:teams_data) {'./data/teams.csv'}
+  let(:team) {Teams.new(teams_data)}
 
   it 'exists' do
 
-    expect(game).to be_a(Teams)
+    expect(team).to be_a(Teams)
   end
 end

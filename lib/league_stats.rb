@@ -1,5 +1,6 @@
 require './spec/spec_helper'
 
-class League 
-
+class LeagueStats < HashData
+  def initialize
+  end
 end

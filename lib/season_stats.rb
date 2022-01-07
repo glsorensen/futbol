@@ -1,6 +1,6 @@
 require './spec/spec_helper'
 
-class SeasonStats
+class SeasonStats < HashData
   # include Parsable
   attr_reader :games, :teams, :game_teams
 
