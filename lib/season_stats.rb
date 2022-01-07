@@ -95,4 +95,8 @@ class SeasonStats
       team.goal_percentage
     end
   end
+
+  def scoringest_team
+
+  end
 end

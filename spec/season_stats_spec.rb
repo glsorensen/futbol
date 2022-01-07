@@ -93,4 +93,12 @@ RSpec.describe do
     expect(season_stats.sort_by_goal_percent[0].team_id).to eq("16")
     expect(season_stats.sort_by_goal_percent[-1].team_id).to eq("17")
   end
+
+  it "finds the team that scores the most of their shots" do
+    expect(season_stats.scoringest_team).to eq("LA Galaxy")
+  end
+
+  it "finds the team that scores the least of their shots" do
+    expect(season_stats.missingest_team).to eq("New England Revolution")
+  end
 end
