@@ -1,7 +1,7 @@
 require './lib/season_stats'
 require 'csv'
 require './lib/coach'
-require './lib/team.rb'
+require './lib/futbol_team.rb'
 require 'pry'
 RSpec.describe do
   let(:game_path) {'./data/games_sample.csv'}
@@ -16,16 +16,6 @@ RSpec.describe do
 
   it 'exists' do
     expect(season_stats).to be_a SeasonStats
-  end
-
-  xit "initializes" do
-    expect(season_stats.games).to eq(game_path)
-    expect(season_stats.teams).to eq(team_path)
-    expect(season_stats.game_teams).to eq(game_teams_path)
-  end
-
-  xit "parse CSVs" do
-    expect(season_stats.parse(season_stats.games)).to eq(game_path)
   end
 
   it "can find game_ids based on season" do
@@ -92,5 +82,10 @@ RSpec.describe do
 
   it "finds the team that scores the least of their shots" do
     expect(season_stats.missingest_team).to eq("New England Revolution")
+  end
+
+  it "it sorts by number of tackles" do
+    expect(season_stats.sort_by_tackles[0]).to eq("16")
+    expect(season_stats.sort_by_tackles[-1]).to eq("3")
   end
 end
