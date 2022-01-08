@@ -16,9 +16,9 @@ class GameTeams
     @result = data[:result]
     @settled_in = data[:settled_in]
     @head_coach = data[:head_coach]
-    @goals = data[:goals]
-    @shots = data[:shots]
-    @tackles = data[:tackles]
+    @goals = data[:goals].to_i
+    @shots = data[:shots].to_i
+    @tackles = data[:tackles].to_i
     @penalty_minutes = data[:pim]
     @power_play_opportunities = data[:powerPlayOpportunities]
     @power_play_goals = data[:powerPlayGoals]

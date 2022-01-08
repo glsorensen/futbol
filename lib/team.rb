@@ -12,7 +12,7 @@ class Team
     @goals += goals
   end
 
-  def win_percentage
+  def goal_percentage
     ((@goals.to_f / @shots) * 100).round(1)
   end
 
