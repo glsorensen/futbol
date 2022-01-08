@@ -46,8 +46,8 @@ class SeasonStats < HashData
   def team_data
     @season_data.reduce({}) do |teams, game|
       team_id = game[:team_id]
-      team = teams[team_id] || Team.new({team_id: team_id, shots: 0, goals: 0})
-      team.play_game(game[:shots].to_i, game[:goals].to_i)
+      team = teams[team_id] || Team.new({team_id: team_id, shots: 0, goals: 0, tackles: 0})
+      team.play_game(game[:shots].to_i, game[:goals].to_i, game[:tackles].to_i)
       teams[team_id] = team
       teams
     end.values
@@ -75,7 +75,13 @@ class SeasonStats < HashData
     name_convert(sort_by_goal_percent[0].team_id)
   end
 
+  def sort_by_tackles
+    team_data.sort_by do |team|
+      team.tackles
+    end
+  end
+
   def tackliest_team
-    
+
   end
 end
