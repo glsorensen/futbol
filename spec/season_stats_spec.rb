@@ -88,4 +88,12 @@ RSpec.describe do
     expect(season_stats.sort_by_tackles[0]).to eq("16")
     expect(season_stats.sort_by_tackles[-1]).to eq("3")
   end
+
+  it "finds the team with the most tackles" do
+    expect(season_stats.tackliest_team).to eq("Houston Dynamo")
+  end
+
+  it "finds the team with the fewest tackles" do
+    expect(season_stats.untackliest_team).to eq("New England Revolution")
+  end
 end
