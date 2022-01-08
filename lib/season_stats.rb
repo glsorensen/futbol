@@ -28,6 +28,7 @@ class SeasonStats < HashData
     end.values
   end
 
+
   def sort_by_win_percent
     coach_records.sort_by do |coach|
       coach.win_percentage
@@ -72,5 +73,9 @@ class SeasonStats < HashData
 
   def missingest_team
     name_convert(sort_by_goal_percent[0].team_id)
+  end
+
+  def tackliest_team
+    
   end
 end
