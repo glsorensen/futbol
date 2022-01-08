@@ -4,7 +4,6 @@ class GameStats < HashData
 
 
   def highest_total_score
-    # require 'pry' ; binding.pry
     a = @games[:away_goals].map(&:to_i)
     b = @games[:home_goals].map(&:to_i)
     c = a.zip(b)
@@ -19,15 +18,23 @@ class GameStats < HashData
   end
 
   def percentage_home_wins
-    #game_statistic
+    home_games = @game_teams.select {|value| value[:hoa] == "home"}.count.to_f
+    home_game_wins = @game_teams.select {|value|value[:hoa] == "home" && value[:result] == "WIN"}.count.to_f
+    (home_game_wins / home_games).round(2)
   end
 
   def percentage_visitor_wins
-    #game_statistic
+    home_games = @game_teams.select {|value| value[:hoa] == "home"}.count.to_f
+    home_game_wins = @game_teams.select {|value|
+      value[:hoa] == "home" && value[:result] == "LOSS"}.count.to_f
+    (home_game_wins / home_games).round(2)
   end
 
   def percentage_ties
-    #game_statistic
+    ties = @game_teams.select {|value| value[:result] == "TIE"}.count.to_f/2
+    total_games = @game_teams.select {|value| value[:result]}.count.to_f/2
+    (ties / total_games).round(2)
+    # require 'pry' ; binding.pry
   end
 
   def count_of_games_by_season

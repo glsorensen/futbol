@@ -30,15 +30,15 @@ RSpec.describe 'GameStats' do
     expect(game_stats.lowest_total_score).to eq 0
   end
 
-  xit "#percentage_home_wins" do
+  it "#percentage_home_wins" do
     expect(game_stats.percentage_home_wins).to eq 0.44
   end
 
-  xit "#percentage_visitor_wins" do
+  it "#percentage_visitor_wins" do
     expect(game_stats.percentage_visitor_wins).to eq 0.36
   end
 
-  xit "#percentage_ties" do
+  it "#percentage_ties" do
     expect(game_stats.percentage_ties).to eq 0.20
   end
 
