@@ -33,15 +33,20 @@ class GameStats < HashData
   def percentage_ties
     ties = @game_teams.select {|value| value[:result] == "TIE"}.count.to_f/2
     (ties / (@game_teams.count / 2.0)).round(2)
-    # require 'pry' ; binding.pry
   end
 
   def count_of_games_by_season
+    games_per_season = @games.group_by {|game| game[:season]}
+    games_per_season.transform_values! {|value| value.count}
     #game_statistic
   end
 
   def average_goals_per_game
-    #game_statistic
+    a = @games[:away_goals].map(&:to_i)
+    b = @games[:home_goals].map(&:to_i)
+    c = a.zip(b)
+    d = c.map(&:sum)
+    require 'pry' ; binding.pry
   end
 
   def average_goals_by_season
