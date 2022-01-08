@@ -5,6 +5,7 @@ RSpec.describe 'HashData' do
   let(:games_data) {'./data/games.csv'}
   let(:teams_data) {'./data/teams.csv'}
   let(:game_teams_data) {'./data/game_teams.csv'}
+
   let(:data) {{
         :games => games_data,
         :teams => teams_data,
