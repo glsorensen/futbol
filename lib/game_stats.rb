@@ -32,8 +32,7 @@ class GameStats < HashData
 
   def percentage_ties
     ties = @game_teams.select {|value| value[:result] == "TIE"}.count.to_f/2
-    total_games = @game_teams.select {|value| value[:result]}.count.to_f/2
-    (ties / total_games).round(2)
+    (ties / (@game_teams.count / 2.0)).round(2)
     # require 'pry' ; binding.pry
   end
 
