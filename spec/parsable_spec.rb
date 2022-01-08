@@ -1,4 +1,6 @@
-
+require '/.lib/parsable'
+require './lib/stat_tracker'
+require 'csv'
 
 RSpec.describe 'StatTracker' do
   let(:game_path) {'./data/games.csv'}

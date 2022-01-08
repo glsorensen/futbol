@@ -18,7 +18,7 @@ RSpec.describe 'HashData' do
   end
 
   it 'creates Games class objects' do
-    binding.pry
+   # binding.pry
     expect(hash_data.games).to be_a(Games)
   end
 
