@@ -82,6 +82,10 @@ class SeasonStats < HashData
   end
 
   def tackliest_team
+    name_convert(sort_by_tackles[-1].team_id)
+  end
 
+  def untackliest_team
+    name_convert(sort_by_tackles[0].team_id)
   end
 end

@@ -85,8 +85,8 @@ RSpec.describe do
   end
 
   it "it sorts by number of tackles" do
-    expect(season_stats.sort_by_tackles[0]).to eq("16")
-    expect(season_stats.sort_by_tackles[-1]).to eq("3")
+    expect(season_stats.sort_by_tackles[0].team_id).to eq("16")
+    expect(season_stats.sort_by_tackles[-1].team_id).to eq("3")
   end
 
   it "finds the team with the most tackles" do
