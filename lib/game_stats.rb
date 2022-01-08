@@ -12,29 +12,15 @@ class GameStats < HashData
     d = c.map(&:sum).max
   end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    c = a.zip(b).map(&:sum).max
-
-    c.map(&:sum)
-
-    c.map { |scores|scores.sum }
-
-    c.map do |scores|
-          scores.sum
-        end
+    # c = a.zip(b).map(&:sum).max
+    #
+    # c.map(&:sum)
+    #
+    # c.map { |scores|scores.sum }
+    #
+    # c.map do |scores|
+    #       scores.sum
+    #     end
 
 
     c.max_by {|scores|scores.sum}.sum
