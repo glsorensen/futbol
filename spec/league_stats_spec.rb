@@ -24,4 +24,9 @@ RSpec.describe LeagueStats do
   it 'can count teams' do
   expect(league.league_count).to eq(32)
   end
+
+  it 'can find best offense' do
+    require 'pry'; binding.pry
+    expect(league.best_offense).to eq("Reign FC")
+  end
 end

@@ -1,5 +1,7 @@
 require './lib/hash_data.rb'
 require './lib/game_stats'
+require './lib/games'
+require 'csv'
 
 RSpec.describe 'GameStats' do
   let(:games) {'./data/games.csv'}

@@ -2,13 +2,14 @@ require './lib/hash_data.rb'
 
 class GameStats < HashData
 
-
-  def initialize
+  attr_reader :rows
+  def initialize(rows)
+    @rows = rows
     super(games)
   end
 
   def highest_total_score
-    
+
   end
 
   def lowest_total_score

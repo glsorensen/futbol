@@ -12,5 +12,9 @@ class LeagueStats < HashData
     @teams.count
   end
 
+  def best_offense
+    
+  end
+
 
 end

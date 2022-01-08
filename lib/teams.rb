@@ -1,3 +1,4 @@
+require 'csv'
 class Teams
   attr_reader :team_id,
               :franchise_id,

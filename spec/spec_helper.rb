@@ -1,7 +1,7 @@
 require 'simplecov'
-require 'pry'
-require 'csv'
 SimpleCov.start
+require 'csv'
+require 'pry'
 require './lib/stat_tracker.rb'
 require './lib/games.rb'
 require './lib/teams.rb'

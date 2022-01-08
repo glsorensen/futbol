@@ -3,8 +3,9 @@ require './lib/games.rb'
 require './lib/teams.rb'
 require './lib/game_teams.rb'
 
+
 class HashData
-  attr_reader :games, :teams, :game_teams
+  attr_reader :games, :teams, :game_teams, :hash
 
   def initialize(data)
     @hash = {}
