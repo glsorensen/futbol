@@ -1,5 +1,5 @@
 require './lib/hash_data.rb'
-require './lib/game_stats'
+require './lib/game_stats.rb'
 
 RSpec.describe 'GameStats' do
   let(:games) {'./data/games.csv'}
@@ -10,12 +10,20 @@ RSpec.describe 'GameStats' do
         :teams => teams,
         :game_teams => game_teams
     }}
-    let(:hash_data) {HashData.new(data)}
-    let(:game_stats) {GameStats.new}
+    # let(:hash_data) {HashData.new(data)}
+    let(:game_stats) {GameStats.new(data)}
 
   it 'exists' do
-    require 'pry' ; binding.pry
+     # require 'pry' ; binding.pry
     expect(game_stats).to be_a GameStats
+  end
+
+  it 'can calculate highest score' do
+    expect(game_stats.highest_total_score).to eq(11)
+  end
+
+  it 'needs data to exist' do
+    expect{GameStats.new}.to raise_error
   end
 
   xit "initializes" do
