@@ -56,16 +56,6 @@ RSpec.describe do
     expect(season_stats.get_season_rows(:game_id).size).to eq(7)
   end
 
-  xit "gets coaches array" do
-    expected = ["John Tortorella", "Claude Julien", "Mike Babcock", "Joel Quenneville", "Mike Yeo"]
-
-    expect(season_stats.get_coaches_arr).to eq(expected)
-  end
-
-  xit "transforms coaches array to coach classes" do
-    expect(season_stats.coach_classes[0]).to be_a(Coach)
-  end
-
   it "creates array of coaches records" do
     expect(season_stats.coach_records[0].games).to eq(2)
   end
