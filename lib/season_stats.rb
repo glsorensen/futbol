@@ -1,22 +1,10 @@
-#require './spec/spec_helper'
+require './lib/hash_data'
 
-class SeasonStats
-  # include Parsable
-  attr_reader :games, :teams, :game_teams
-
-  def initialize(location)
-    @games = location[:games]
-    @teams = location[:teams]
-    @game_teams = location[:game_teams]
-  end
-
-  def parse(csv)
-    CSV.read csv, headers: true, header_converters: :symbol
-  end
+class SeasonStats < HashData
 
   def games_in_season(season)
     @game_ids = []
-    parse(@games).filter do |row|
+    @games.filter do |row|
       @game_ids << row[:game_id] if row[:season] == season
     end
     @game_ids
@@ -24,37 +12,11 @@ class SeasonStats
 
   def get_season_rows(header)
     @season_data = []
-    parse(@game_teams).filter do |row|
+    @game_teams.filter do |row|
       @season_data << row if @game_ids.any?(row[header])
     end
     @season_data
   end
-
-  # def get_coaches_arr
-  #   @season_data.map do |data|
-  #     data[:head_coach]
-  #   end.uniq
-  # end
-  #
-  # def coach_classes
-  #   get_coaches_arr.map do |coach|
-  #     Coach.new({name:coach, wins:0, games:0})
-  #   end
-  # end
-
-  # def coach_records
-  #   coach_classes.map do |coach|
-  #     @season_data.each do |data|
-  #       if data[:head_coach] == coach.name
-  #         coach.add_game
-  #         if data[:result] == "WIN"
-  #           coach.add_win
-  #         end
-  #       end
-  #     end
-  #     coach
-  #   end
-  # end
 
   def coach_records
     @season_data.reduce({}) do |coaches, game|
@@ -81,7 +43,7 @@ class SeasonStats
   end
 
   def team_data
-    x = @season_data.reduce({}) do |teams, game|
+    @season_data.reduce({}) do |teams, game|
       team_id = game[:team_id]
       team = teams[team_id] || Team.new({team_id: team_id, shots: 0, goals: 0})
       team.play_game(game[:shots].to_i, game[:goals].to_i)
@@ -97,7 +59,7 @@ class SeasonStats
   end
 
   def name_convert(team_id)
-    parse(@teams).each do |row|
+    @teams.each do |row|
       if row[:team_id] == team_id
         return row[:teamname]
       end
@@ -105,6 +67,10 @@ class SeasonStats
   end
 
   def scoringest_team
+    name_convert(sort_by_goal_percent[-1].team_id)
+  end
 
+  def missingest_team
+    name_convert(sort_by_goal_percent[0].team_id)
   end
 end
