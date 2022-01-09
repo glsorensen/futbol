@@ -66,8 +66,8 @@ class TeamStats < HashData
     h.each do |season, games|
        wins_hashed[season] = (games.count { |game| game[0].result == "WIN"} / games.size.to_f).round(3)
      end
-    select_looser = wins_hashed.min_by{|k,v| v}
-    select_looser[0]
+    select_loser = wins_hashed.min_by{|k,v| v}
+    select_loser[0]
   end
 
   def most_goals_scored(team_id)
