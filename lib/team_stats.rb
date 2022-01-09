@@ -34,17 +34,19 @@ class TeamStats < HashData
       }
   end
 
-  def hashed_games_by_season(team_id)
+  def hashed_team_games_by_season(team_id)
     a = games_played(team_id)
-    game_ids = a.map {|game| game.game_id1}
-    game_season_match = @games.filter {|game| game_ids.include?(game.game_id)}
-    games_season_hash = game_season_match.group_by {|game| game.season}
+    d = game_teams_filter_team(team_id)
+    sorted_games = a.sort_by {|game| game.game_id}
+    sorted_game_teams = d.sort_by {|game| game.game_id1}
+    # a = games_played(team_id)
+    # game_ids = a.map {|game| game.game_id1}
+    # game_season_match = @games.filter {|game| game_ids.include?(game.game_id)}
+    # games_season_hash = game_season_match.group_by {|game| game.season}
   end
 
   def best_season(team_id)
-    a = games_played(team_id)
-    b = hashed_games_by_season(team_id)
-    game_id = a.map {|game| game.game_id1}
+
 
 
     # binding.pry
