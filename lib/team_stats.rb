@@ -18,11 +18,11 @@ class TeamStats < HashData
       }
   end
 
-  def best_season(team_id)
-    seasons_played = @games.find_all {|game| game.away_team_id || game.home_team_id == team_id}
-    games_played = @game_teams.find_all {|team| team.team_id == team_id}
-    binding.pry
-
+  def hashed_games_by_season(team_id)
+    a = games_played(team_id)
+    game_id = a.map {|game| game.game_id1}
+    game_season_match = @games.filter {|game| game_id.include?(game.game_id)}
+    games_season_hash = game_season_match.group_by {|game| game.season}
     puts
   end
 
