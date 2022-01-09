@@ -31,7 +31,6 @@ class GameStats < HashData
   def count_of_games_by_season
     games_per_season = @games.group_by {|game| game[:season]}
     games_per_season.transform_values! {|value| value.count} 
-    #game_statistic
   end
 
   def average_goals_per_game
@@ -41,6 +40,7 @@ class GameStats < HashData
   end
 
   def average_goals_by_season
+    games_per_season = @games.group_by {|game| game[:season]}
     #game_statistic
   end
 
