@@ -38,6 +38,10 @@ RSpec.describe TeamStats do
     expect(team.game_teams_filter('6').size).to eq 1020
   end
 
+  it 'can filter game_teams_filter by team' do
+    expect(team.game_teams_filter('6').size).to eq 510
+  end
+
   it '3* can hash a team games into seasons' do
 
     expect(team.hashed_games_by_season("3")).to be_a(Hash)
