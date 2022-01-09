@@ -45,4 +45,8 @@ RSpec.describe TeamStats do
      expect(team.most_goals_scored("18")).to eq 7
    end
 
+   it '5* can calculate the least goals scored for a team' do
+
+     expect(team.fewest_goals_scored("18")).to eq 0
+   end
 end

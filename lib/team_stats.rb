@@ -7,10 +7,6 @@ class TeamStats < HashData
     games_played = @game_teams.find_all {|team| team.team_id == team_id}
   end
 
-  def team_games(team_id)
-    team_games = @game_teams.find_all { |game| game.team_id == team_id}
-  end
-
   def team_info(team_id)
     choosen_team = @teams.select {|team| team.team_id == team_id}
     hashed = {
@@ -31,7 +27,7 @@ class TeamStats < HashData
   end
 
   def average_win_percentage(team_id)
-    a = team_games(team_id)
+    a = games_played(team_id)
     total_games = a.size
     wins = a.count { |game| game.result == "WIN"}
     awp = (wins.to_f / total_games).to_f.round(2)
@@ -43,10 +39,7 @@ class TeamStats < HashData
     max_game.goals.to_i
   end
 
-  def fewest_goals_scored
-
-  end
-
+  
 end
 
 # games_played = @game_teams.find_all {|team| team.team_id == team_id}
