@@ -7,6 +7,11 @@ class TeamStats < HashData
     games_played = @game_teams.find_all {|team| team.team_id == team_id}
   end
 
+  # def game_ids(team_id)
+  #   a = games_played(team_id)
+  #   b = a.map {|game| game.game_id1}
+  # end
+
   def team_info(team_id)
     choosen_team = @teams.select {|team| team.team_id == team_id}
     hashed = {
@@ -23,7 +28,15 @@ class TeamStats < HashData
     game_id = a.map {|game| game.game_id1}
     game_season_match = @games.filter {|game| game_id.include?(game.game_id)}
     games_season_hash = game_season_match.group_by {|game| game.season}
-    puts
+  end
+
+  def best_season(team_id)
+    a = games_played(team_id)
+    b = hashed_games_by_season(team_id)
+    game_id = a.map {|game| game.game_id1}
+  
+
+    # binding.pry
   end
 
   def average_win_percentage(team_id)
@@ -46,7 +59,8 @@ class TeamStats < HashData
   end
 
 end
-
+# games_by_season = b.filter do |season, games|
+#   games.filter {|game| game_id.include?(game.game_id)}
 # games_played = @game_teams.find_all {|team| team.team_id == team_id}
 # game_ids = games_played.map {|game| game.game_id1}
 # go = TeamStatistics.new

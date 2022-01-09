@@ -13,12 +13,12 @@ RSpec.describe TeamStats do
     }}
     let(:team) {TeamStats.new(data)}
 
-  it '1* exists' do
+  it 'exists' do
 
     expect(team).to be_a(TeamStats)
   end
 
-  it '2* can print team atributes' do
+  it 'team atributes' do
     expected = {
       "team_id" => "18",
       "franchise_id" => "34",
@@ -30,22 +30,31 @@ RSpec.describe TeamStats do
     expect(team.team_info('18')).to eq(expected)
   end
 
-  it '3* can calculate average_win_percentage' do
+  it 'array of games ids played' do
+    expect(team.game_ids.size('6')).to eq 513
+  end
+
+  it '3* can hash a team games into seasons' do
+
+    expect(team.hashed_games_by_season("3")).to be_a(Hash)
+  end
+
+  it '4* can calculate average_win_percentage' do
 
      expect(team.average_win_percentage('6')).to eq(0.49)
    end
 
-   it '4* can calculate a teams best_season' do
+   it '5* can calculate a teams best_season' do
 
      expect(team.best_season('18')).to eq("20132014")
    end
 
-   it '5* can calculate the most goals scored for a team' do
+   it '6* can calculate the most goals scored for a team' do
 
      expect(team.most_goals_scored("18")).to eq 7
    end
 
-   it '6* can calculate the least goals scored for a team' do
+   it '7* can calculate the least goals scored for a team' do
 
      expect(team.fewest_goals_scored("18")).to eq 0
    end
