@@ -5,14 +5,25 @@ require './lib/game_teams.rb'
 
 
 class HashData
-  attr_reader :games, :teams, :game_teams, :hash
+  attr_reader :games, :teams, :game_teams, :hash, :team_names, :hoa, :team_id,
 
   def initialize(data)
     @hash = {}
-    @games = CSV.read(data[:games], headers: true, header_converters: :symbol).each { |row| @hash[row[:game_id]] = Games.new(row) }
+    @games = CSV.read(data[:games], headers: true, header_converters: :symbol).each { |row| @hash[row[:date_time]] = Games.new(row) }
     @teams = CSV.read(data[:teams], headers: true, header_converters: :symbol).each { |row| @hash[row[:team_id]] = Teams.new(row) }
     @game_teams = CSV.read(data[:game_teams], headers: true, header_converters: :symbol).each { |row| @hash[row[:game_id]] = GameTeams.new(row) }
+    @team_names = {}
+    @names = CSV.read(data[:teams], headers: true, header_converters: :symbol).each { |row| @team_names[row[:teamname]] = {} }
+    @hoa = {}
+    @ho_aw = CSV.read(data[:game_teams], headers: true, header_converters: :symbol).each { |row| @hoa[row[:hoa]] = [] }
+    @team_id = {}
+    @id = CSV.read(data[:teams], headers: true, header_converters: :symbol).each { |row| @team_id[row[:team_id]] = [row[:teamname]] }
   end
+
+  def merge_hash
+    @team_names.transform_values { |value| value = @hoa }
+  end
+
 
 
 end
