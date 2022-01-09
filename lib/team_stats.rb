@@ -13,25 +13,21 @@ class TeamStats < HashData
       "abbreviation" => choosen_team[0].abbreviation,
       "link" => choosen_team[0].link
       }
-
   end
 
-
   def best_season(team_id)
-    # seasons_played = @games.find_all {|game| game.away_team_id || game.home_team_id == team_id}
+    seasons_played = @games.find_all {|game| game.away_team_id || game.home_team_id == team_id}
     games_played = @game_teams.find_all {|team| team.team_id == team_id}
 
     puts
   end
 
   def average_win_percentage(team_id)
-    team_games = @game_teams.find_all { |game| game.team_id1 == team_id}
+    team_games = @game_teams.find_all { |game| game.team_id == team_id}
     total_games = team_games.size
     wins = team_games.count { |game| game.result == "WIN"}
     awp = (wins.to_f / total_games).to_f.round(2)
   end
-
-
 
 end
 

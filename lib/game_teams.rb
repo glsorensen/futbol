@@ -1,6 +1,6 @@
 class GameTeams
 
-  attr_reader :game_id1qq,
+  attr_reader :game_id1,
               :team_id,
               :home_or_away,
               :result,

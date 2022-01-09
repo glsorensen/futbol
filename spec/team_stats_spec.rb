@@ -30,7 +30,7 @@ RSpec.describe TeamStats do
     expect(team.team_info('18')).to eq(expected)
   end
 
-  xit '3* can calculate average_win_percentage' do
+  it '3* can calculate average_win_percentage' do
 
      expect(team.average_win_percentage('6')).to eq(0.49)
    end
