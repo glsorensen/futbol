@@ -3,24 +3,19 @@ require 'pry'
 
 class TeamStats < HashData
 
-  def games_played(team_id)
-    games_played = @game_teams.find_all {|team| team.team_id == team_id}
+  def games_teams_played(team_id)
+    a = @game_teams.find_all {|team| team.team_id == team_id}
   end
 
   def game_ids(team_id)
-    a = games_played(team_id)
+    a = games_teams_played(team_id)
     b = a.map {|game| game.game_id1}
   end
 
-  def game_teams_filter_game(team_id)
-    a = games_played(team_id)
+  def games_filter_game(team_id)
+    a = games_teams_played(team_id)
     b = game_ids(team_id)
-    game_team_filter_by_game = @game_teams.filter {|game| b.include?(game.game_id1)}
-  end
-
-  def game_teams_filter_team(team_id)
-    c = game_teams_filter_game(team_id)
-    game_team_filter_by_team = c.select {|game| game.team_id == team_id}
+    games_filter = @games.filter {|game| b.include?(game.game_id)}
   end
 
   def team_info(team_id)
@@ -34,15 +29,13 @@ class TeamStats < HashData
       }
   end
 
-  def hashed_team_games_by_season(team_id)
-    a = games_played(team_id)
-    d = game_teams_filter_team(team_id)
-    sorted_games = a.sort_by {|game| game.game_id}
-    sorted_game_teams = d.sort_by {|game| game.game_id1}
-    # a = games_played(team_id)
-    # game_ids = a.map {|game| game.game_id1}
-    # game_season_match = @games.filter {|game| game_ids.include?(game.game_id)}
-    # games_season_hash = game_season_match.group_by {|game| game.season}
+  def sorted_games_array(team_id)
+    a = games_teams_played(team_id)
+    c = games_filter_game(team_id)
+    d = sorted_game_teams = a.sort_by {|game| game.game_id1}
+    e = sorted_games = c.sort_by {|game| game.game_id}
+    merged_array = d.zip(e)
+    # binding.pry
   end
 
   def best_season(team_id)
@@ -53,20 +46,20 @@ class TeamStats < HashData
   end
 
   def average_win_percentage(team_id)
-    a = games_played(team_id)
+    a = games_teams_played(team_id)
     total_games = a.size
     wins = a.count { |game| game.result == "WIN"}
     awp = (wins.to_f / total_games).to_f.round(2)
   end
 
   def most_goals_scored(team_id)
-    a = games_played(team_id)
+    a = games_teams_played(team_id)
     max_game = a.max_by {|game| game.goals}
     max_game.goals.to_i
   end
 
   def  fewest_goals_scored(team_id)
-    a = games_played(team_id)
+    a = games_teams_played(team_id)
     max_game = a.min_by {|game| game.goals}
     max_game.goals.to_i
   end
@@ -74,8 +67,8 @@ class TeamStats < HashData
 end
 # games_by_season = b.filter do |season, games|
 #   games.filter {|game| game_id.include?(game.game_id)}
-# games_played = @game_teams.find_all {|team| team.team_id == team_id}
-# game_ids = games_played.map {|game| game.game_id1}
+# games_teams_played = @game_teams.find_all {|team| team.team_id == team_id}
+# game_ids = games_teams_played.map {|game| game.game_id1}
 # go = TeamStatistics.new
 #
 # binding.pry
@@ -140,22 +133,22 @@ end
     # required_team_info = select_team.each do |team|
     #   team.delete_if {|key, value| key == :stadium}
 
-        # games_played_season = games_played.group_by { |game| game.game_id[0..3]}
-        # calculate_each_season = games_played_season.each do |season, games|
+        # games_teams_played_season = games_teams_played.group_by { |game| game.game_id[0..3]}
+        # calculate_each_season = games_teams_played_season.each do |season, games|
         #   season.count {|game| game.result == "WIN"}
         #   end.count
 
 
-        # what_seasons = @games.map do { |game| game.game_id == games_played.each do |game| game.game_id1}
+        # what_seasons = @games.map do { |game| game.game_id == games_teams_played.each do |game| game.game_id1}
 
 
 
-          # => games_played.map do {|game| game.game_id == what_seasons.key}
+          # => games_teams_played.map do {|game| game.game_id == what_seasons.key}
 
         # g
 
-        # game_ids = games_played.map {|game| game.game_id}.sort
-        # what_seasons = @games.find_all { |game| games_played.game_id == game.game_id}
+        # game_ids = games_teams_played.map {|game| game.game_id}.sort
+        # what_seasons = @games.find_all { |game| games_teams_played.game_id == game.game_id}
         # seasons = @games.group_by { |game| game.season}
         # teams = @game_teams.group_by { |team| team.team_id}
         # team_game_by_season = group_by do {| season, games| games.home_team_id || games.away_team_id == team_id}

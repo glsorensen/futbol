@@ -13,7 +13,7 @@ RSpec.describe TeamStats do
     }}
     let(:team) {TeamStats.new(data)}
 
-  it 'exists' do
+  xit 'exists' do
 
     expect(team).to be_a(TeamStats)
   end
@@ -30,29 +30,29 @@ RSpec.describe TeamStats do
     expect(team.team_info('18')).to eq(expected)
   end
 
-  it 'array of games ids played' do
+  xit 'array of games ids played' do
     expect(team.game_ids('6').size).to eq 510
   end
 
-  it 'can filter game_teams using game ids array' do
+  xit 'can filter game_teams using game ids array' do
     expect(team.game_teams_filter_game('6').size).to eq 1020
   end
 
-  it 'can filter game_teams_filter by team' do
+  xit 'can filter game_teams_filter by team' do
 
     expect(team.game_teams_filter_team('6').size).to eq 510
   end
 
-  it 'can hash team games by season' do
-    expect(team.hashed_team_games_by_season('6').size).to eq 6
+  it 'can ' do
+    expect(team.sorted_games_array('6').size).to eq 510
   end
 
-  it '* can hash a team games into seasons' do
+  xit '* can hash a team games into seasons' do
 
     expect(team.hashed_games_by_season("3")).to be_a(Hash)
   end
 
-  it '4* can calculate average_win_percentage' do
+  xit '4* can calculate average_win_percentage' do
 
      expect(team.average_win_percentage('6')).to eq(0.49)
    end
