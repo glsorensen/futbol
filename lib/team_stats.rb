@@ -3,6 +3,9 @@ require 'pry'
 
 class TeamStats < HashData
 
+  def games_played(team_id)
+    games_played = @game_teams.find_all {|team| team.team_id == team_id}
+  end
 
   def team_info(team_id)
     choosen_team = @teams.select {|team| team.team_id == team_id}
@@ -31,9 +34,13 @@ class TeamStats < HashData
   end
 
   def most_goals_scored(team_id)
-    games_played = @game_teams.find_all {|team| team.team_id == team_id}
-    max_game = games_played.max_by {|game| game.goals}
+    a = games_played(team_id)
+    max_game = a.max_by {|game| game.goals}
     max_game.goals.to_i
+  end
+
+  def fewest_goals_scored
+
   end
 
 end
