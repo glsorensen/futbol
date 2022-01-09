@@ -39,7 +39,12 @@ class TeamStats < HashData
     max_game.goals.to_i
   end
 
-  
+  def  fewest_goals_scored(team_id)
+    a = games_played(team_id)
+    max_game = a.min_by {|game| game.goals}
+    max_game.goals.to_i
+  end
+
 end
 
 # games_played = @game_teams.find_all {|team| team.team_id == team_id}
