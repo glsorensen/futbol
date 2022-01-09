@@ -12,6 +12,12 @@ class TeamStats < HashData
     b = a.map {|game| game.game_id1}
   end
 
+  def game_teams_filter(team_id)
+    a = games_played(team_id)
+    b = game_ids(team_id)
+    game_team_filter = @game_teams.filter {|game| b.include?(game.game_id1)}
+  end
+
   def team_info(team_id)
     choosen_team = @teams.select {|team| team.team_id == team_id}
     hashed = {
@@ -25,8 +31,8 @@ class TeamStats < HashData
 
   def hashed_games_by_season(team_id)
     a = games_played(team_id)
-    game_id = a.map {|game| game.game_id1}
-    game_season_match = @games.filter {|game| game_id.include?(game.game_id)}
+    game_ids = a.map {|game| game.game_id1}
+    game_season_match = @games.filter {|game| game_ids.include?(game.game_id)}
     games_season_hash = game_season_match.group_by {|game| game.season}
   end
 
