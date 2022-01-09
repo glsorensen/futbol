@@ -37,7 +37,7 @@ RSpec.describe TeamStats do
 
    xit '4* can calculate a teams best_season' do
 
-     expect(team.best_season('6')).to eq(0.49)
+     expect(team.best_season('6')).to eq("20132014")
    end
 
 
