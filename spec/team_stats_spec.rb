@@ -18,14 +18,27 @@ RSpec.describe TeamStats do
     expect(team).to be_a(TeamStats)
   end
 
-  it '2* can calculate average_win_percentage' do
+  it '2* can print team atributes' do
+    expected = {
+      "team_id" => "18",
+      "franchise_id" => "34",
+      "team_name" => "Minnesota United FC",
+      "abbreviation" => "MIN",
+      "link" => "/api/v1/teams/18"
+    }
+    binding.pry
+    expect(team.team_info('18')).to eq(expected)
+  end
+
+  xit '3* can calculate average_win_percentage' do
+
      expect(team.average_win_percentage('6')).to eq(0.49)
    end
 
-   # it '3* can calculate a teams best_season' do
-   #
-   #   expect(team.best_season('6')).to eq(0.49)
-   # end
+   xit '4* can calculate a teams best_season' do
+
+     expect(team.best_season('6')).to eq(0.49)
+   end
 
 
 end
