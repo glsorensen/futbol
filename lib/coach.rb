@@ -7,20 +7,12 @@ class Coach
     @games = record[:games]
   end
 
-  def add_game
-    @games += 1
-  end
-
-  def add_win
-    @wins += 1
-  end
-
   def play_game(result)
     @games += 1
     @wins += 1 if result == "WIN"
   end
 
   def win_percentage
-    @wins.to_f / @games * 100
+    (@wins.to_f / @games) * 100
   end
 end

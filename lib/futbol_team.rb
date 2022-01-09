@@ -8,16 +8,14 @@ class Team
     @tackles = info[:tackles]
   end
 
-  def play_game(shots, goals)
+  def play_game(shots, goals, tackles_num)
     @shots += shots
     @goals += goals
+    @tackles += tackles_num
   end
 
   def goal_percentage
     ((@goals.to_f / @shots) * 100).round(1)
   end
 
-  def record_tackles(tackles_num)
-    @tackles += tackles_num
-  end
 end

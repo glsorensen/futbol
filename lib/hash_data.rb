@@ -13,5 +13,12 @@ class HashData
     @game_teams = CSV.read(data[:game_teams], headers: true, header_converters: :symbol).each { |row| @hash[row[:game_id]] = GameTeams.new(row) }
   end
 
-
+  def name_convert(team_id)
+    @teams.each do |row|
+      if row[:team_id] == team_id
+        return row[:teamname]
+      end
+    end
+  end
+  
 end

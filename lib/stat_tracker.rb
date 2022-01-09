@@ -1,5 +1,6 @@
 require './spec/spec_helper'
-
+require './lib/season_stats'
+require './lib/coach'
 class StatTracker
 
   def initialize(data_location)
@@ -7,8 +8,7 @@ class StatTracker
     # @game_stats = GameStats.new
     # @league_stats = LeagueStats.new
     # @team_stats = TeamStats.new
-    # @season_stats = SeasonStats.new
-
+    @season_stats = SeasonStats.new(data_location)
   end
 
     def highest_total_score
@@ -71,28 +71,28 @@ class StatTracker
       #league_statistics
     end
 
-    def winningest_coach
-      #season_statistics
+    def winningest_coach(season_id)
+      @season_stats.winningest_coach(season_id)
     end
 
     def worst_coach
-      #season_statistics
+      @season_stats.losingest_coach(season_id)
     end
 
     def most_accurrate_team
-      #season_statistics
+      @season_stats.scoringest_team(season_id)
     end
 
     def least_accurate_team
-      #season_statistics
+      @season_stats.missingest_team(season_id)
     end
 
     def most_tackles
-      #season_statistics
+      @season_stats.tackliest_team(season_id)
     end
 
     def fewest_tackles
-      #season_statistics
+      @season_stats.untackliest_team(season_id)
     end
 
     def team_info

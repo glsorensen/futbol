@@ -1,7 +1,7 @@
 require './lib/season_stats'
 require 'csv'
-require './lib/coach'
 require './lib/futbol_team.rb'
+require './lib/coach'
 require 'pry'
 RSpec.describe do
   let(:game_path) {'./data/games_sample.csv'}
@@ -56,11 +56,11 @@ RSpec.describe do
   end
 
   it "finds winningest coach" do
-    expect(season_stats.winningest_coach).to eq("Joel Quenneville")
+    expect(season_stats.winningest_coach("20122013")).to eq("Joel Quenneville")
   end
 
   it "finds losingest coach" do
-    expect(season_stats.losingest_coach).to eq("John Tortorella")
+    expect(season_stats.losingest_coach("20122013")).to eq("John Tortorella")
   end
 
   it "creates an array of team classes" do
@@ -77,11 +77,11 @@ RSpec.describe do
   end
 
   it "finds the team that scores the most of their shots" do
-    expect(season_stats.scoringest_team).to eq("LA Galaxy")
+    expect(season_stats.scoringest_team("20122013")).to eq("LA Galaxy")
   end
 
   it "finds the team that scores the least of their shots" do
-    expect(season_stats.missingest_team).to eq("New England Revolution")
+    expect(season_stats.missingest_team("20122013")).to eq("New England Revolution")
   end
 
   it "it sorts by number of tackles" do
@@ -90,10 +90,10 @@ RSpec.describe do
   end
 
   it "finds the team with the most tackles" do
-    expect(season_stats.tackliest_team).to eq("Houston Dynamo")
+    expect(season_stats.tackliest_team("20122013")).to eq("Houston Dynamo")
   end
 
   it "finds the team with the fewest tackles" do
-    expect(season_stats.untackliest_team).to eq("New England Revolution")
+    expect(season_stats.untackliest_team("20122013")).to eq("New England Revolution")
   end
 end
