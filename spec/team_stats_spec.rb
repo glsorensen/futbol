@@ -26,22 +26,27 @@ RSpec.describe TeamStats do
       "abbreviation" => "MIN",
       "link" => "/api/v1/teams/18"
     }
+
     expect(team.team_info('18')).to eq(expected)
   end
 
   it 'filter games_teams by team_id' do
+
     expect(team.games_filter_game('6').size).to eq 510
   end
 
   it 'array of games ids played' do
+
     expect(team.game_ids('6').size).to eq 510
   end
 
   it 'can filter game_teams using game ids array' do
+
     expect(team.games_filter_game('6').size).to eq 510
   end
 
   it 'can create a merged array of game_teams and games ' do
+
     expect(team.sorted_games_array('6').size).to eq 510
   end
 
@@ -60,18 +65,18 @@ RSpec.describe TeamStats do
      expect(team.best_season("6")).to eq "20132014"
    end
 
-   it 'test 2* can calculate a teams worst_season' do
+   it 'test 3* can calculate a teams worst_season' do
 
      expect(team.worst_season("6")).to eq "20142015"
    end
 
 
-   it 'can calculate the most goals scored for a team' do
+   it 'test 5* can calculate the most goals scored for a team' do
 
      expect(team.most_goals_scored("18")).to eq 7
    end
 
-   it 'can calculate the least goals scored for a team' do
+   it 'test 6* can calculate the least goals scored for a team' do
 
      expect(team.fewest_goals_scored("18")).to eq 0
    end

@@ -59,7 +59,7 @@ class TeamStats < HashData
     select_winner = wins_hashed.max_by{|k,v| v}
     select_winner[0]
   end
-  
+
   def worst_season(team_id)
     h = hash_team_games_by_season(team_id)
     wins_hashed = {}
@@ -69,7 +69,6 @@ class TeamStats < HashData
     select_looser = wins_hashed.min_by{|k,v| v}
     select_looser[0]
   end
-
 
   def most_goals_scored(team_id)
     a = games_teams_played(team_id)
