@@ -35,11 +35,12 @@ RSpec.describe TeamStats do
   end
 
   it 'can filter game_teams using game ids array' do
-    expect(team.game_teams_filter('6').size).to eq 1020
+    expect(team.game_teams_filter_game('6').size).to eq 1020
   end
 
   it 'can filter game_teams_filter by team' do
-    expect(team.game_teams_filter('6').size).to eq 510
+
+    expect(team.game_teams_filter_team('6').size).to eq 510
   end
 
   it '3* can hash a team games into seasons' do
