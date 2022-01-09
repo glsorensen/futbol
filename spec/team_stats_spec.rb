@@ -13,7 +13,7 @@ RSpec.describe TeamStats do
     }}
     let(:team) {TeamStats.new(data)}
 
-  xit 'exists' do
+  it 'exists' do
 
     expect(team).to be_a(TeamStats)
   end
@@ -30,20 +30,15 @@ RSpec.describe TeamStats do
     expect(team.team_info('18')).to eq(expected)
   end
 
-  xit 'array of games ids played' do
+  it 'array of games ids played' do
     expect(team.game_ids('6').size).to eq 510
   end
 
-  xit 'can filter game_teams using game ids array' do
-    expect(team.game_teams_filter_game('6').size).to eq 1020
+  it 'can filter game_teams using game ids array' do
+    expect(team.games_filter_game('6').size).to eq 510
   end
 
-  xit 'can filter game_teams_filter by team' do
-
-    expect(team.game_teams_filter_team('6').size).to eq 510
-  end
-
-  it 'can ' do
+  it 'can create a merged array of game_teams and games ' do
     expect(team.sorted_games_array('6').size).to eq 510
   end
 
@@ -52,22 +47,22 @@ RSpec.describe TeamStats do
     expect(team.hashed_games_by_season("3")).to be_a(Hash)
   end
 
-  xit '4* can calculate average_win_percentage' do
+  it 'can calculate average_win_percentage' do
 
      expect(team.average_win_percentage('6')).to eq(0.49)
    end
 
-   xit '5* can calculate a teams best_season' do
+   it 'can calculate a teams best_season' do
 
      expect(team.best_season('18')).to eq("20132014")
    end
 
-   it '6* can calculate the most goals scored for a team' do
+   it 'can calculate the most goals scored for a team' do
 
      expect(team.most_goals_scored("18")).to eq 7
    end
 
-   it '7* can calculate the least goals scored for a team' do
+   it 'can calculate the least goals scored for a team' do
 
      expect(team.fewest_goals_scored("18")).to eq 0
    end

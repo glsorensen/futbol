@@ -35,14 +35,14 @@ class TeamStats < HashData
     d = sorted_game_teams = a.sort_by {|game| game.game_id1}
     e = sorted_games = c.sort_by {|game| game.game_id}
     merged_array = d.zip(e)
-    # binding.pry
   end
 
   def best_season(team_id)
+    g = sorted_games_array(team_id)
+    flattened_game_array = g.map {|info| info.flatten}
+    i = flattened_game_array.group_by {|game| game[1].season}
+binding.pry
 
-
-
-    # binding.pry
   end
 
   def average_win_percentage(team_id)
