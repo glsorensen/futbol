@@ -1,33 +1,26 @@
 require './lib/hash_data.rb'
 require 'pry'
+require './lib/gamestatsable.rb'
 class GameStats < HashData
+  include GameStatsable
 
 
   def highest_total_score
-    a = @games[:away_goals].map(&:to_i)
-    b = @games[:home_goals].map(&:to_i)
-    c = a.zip(b)
-    d = c.map(&:sum).max
+    total_goals_each_game.max
   end
 
   def lowest_total_score
-    a = @games[:away_goals].map(&:to_i)
-    b = @games[:home_goals].map(&:to_i)
-    c = a.zip(b)
-    d = c.map(&:sum).min
+    total_goals_each_game.min
   end
 
   def percentage_home_wins
-    home_games = @game_teams.select {|value| value[:hoa] == "home"}.count.to_f
     home_game_wins = @game_teams.select {|value|value[:hoa] == "home" && value[:result] == "WIN"}.count.to_f
-    (home_game_wins / home_games).round(2)
+    (home_game_wins / select_home_games_float).round(2)
   end
 
   def percentage_visitor_wins
-    home_games = @game_teams.select {|value| value[:hoa] == "home"}.count.to_f
-    home_game_wins = @game_teams.select {|value|
-      value[:hoa] == "home" && value[:result] == "LOSS"}.count.to_f
-    (home_game_wins / home_games).round(2)
+    home_game_wins = @game_teams.select {|value| value[:hoa] == "home" && value[:result] == "LOSS"}.count.to_f
+    (home_game_wins / select_home_games_float).round(2)
   end
 
   def percentage_ties
@@ -42,12 +35,8 @@ class GameStats < HashData
   end
 
   def average_goals_per_game
-    a = @games[:away_goals].map(&:to_i)
-    b = @games[:home_goals].map(&:to_i)
-    c = a.zip(b)
-    d = c.map(&:sum)
-    e = d.sum
-    (e / @games[:game_id].count.to_f).round(2)
+    total_goals = total_goals_each_game.sum
+    (total_goals / @games[:game_id].count.to_f).round(2)
     # require 'pry' ; binding.pry
   end
 
