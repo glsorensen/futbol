@@ -46,7 +46,9 @@ class GameStats < HashData
     b = @games[:home_goals].map(&:to_i)
     c = a.zip(b)
     d = c.map(&:sum)
-    require 'pry' ; binding.pry
+    e = d.sum
+    (e / @games[:game_id].count.to_f).round(2)
+    # require 'pry' ; binding.pry
   end
 
   def average_goals_by_season
