@@ -18,6 +18,7 @@ class TeamStats < HashData
   def best_season(team_id)
     seasons_played = @games.find_all {|game| game.away_team_id || game.home_team_id == team_id}
     games_played = @game_teams.find_all {|team| team.team_id == team_id}
+    binding.pry
 
     puts
   end

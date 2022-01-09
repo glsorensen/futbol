@@ -35,10 +35,14 @@ RSpec.describe TeamStats do
      expect(team.average_win_percentage('6')).to eq(0.49)
    end
 
-   xit '4* can calculate a teams best_season' do
+   it '4* can calculate a teams best_season' do
 
      expect(team.best_season('6')).to eq("20132014")
    end
 
+   it '5* can calculate the most goals scored for a team' do
+
+     expect(team.most_goals_scored("18")).to eq 7
+   end
 
 end
