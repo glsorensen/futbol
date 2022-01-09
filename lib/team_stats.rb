@@ -37,12 +37,10 @@ class TeamStats < HashData
     merged_array = d.zip(e)
   end
 
-  def best_season(team_id)
+  def hash_team_games_by_season(team_id)
     g = sorted_games_array(team_id)
     flattened_game_array = g.map {|info| info.flatten}
-    i = flattened_game_array.group_by {|game| game[1].season}
-binding.pry
-
+    hashed_by_season = flattened_game_array.group_by {|game| game[1].season}
   end
 
   def average_win_percentage(team_id)

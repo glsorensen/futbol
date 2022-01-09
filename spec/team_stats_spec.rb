@@ -42,21 +42,20 @@ RSpec.describe TeamStats do
     expect(team.sorted_games_array('6').size).to eq 510
   end
 
-  xit '* can hash a team games into seasons' do
-
-    expect(team.hashed_games_by_season("3")).to be_a(Hash)
-  end
-
   it 'can calculate average_win_percentage' do
 
      expect(team.average_win_percentage('6')).to eq(0.49)
    end
 
-   it 'can calculate a teams best_season' do
+   it 'can hash a team games by season' do
+
+     expect(team.hash_team_games_by_season('18').size).to eq(6)
+   end
+
+   xit 'can calculate a teams best_season' do
 
      expect(team.best_season('18')).to eq("20132014")
    end
-
    it 'can calculate the most goals scored for a team' do
 
      expect(team.most_goals_scored("18")).to eq 7
