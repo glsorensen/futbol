@@ -52,9 +52,9 @@ RSpec.describe TeamStats do
      expect(team.hash_team_games_by_season('18').size).to eq(6)
    end
 
-   xit 'can calculate a teams best_season' do
+   it 'can calculate a teams best_season' do
 
-     expect(team.best_season('18')).to eq("20132014")
+     expect(team.best_season("6")).to eq "20132014"
    end
    it 'can calculate the most goals scored for a team' do
 
