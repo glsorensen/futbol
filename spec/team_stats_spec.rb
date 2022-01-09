@@ -26,7 +26,7 @@ RSpec.describe TeamStats do
       "abbreviation" => "MIN",
       "link" => "/api/v1/teams/18"
     }
-    binding.pry
+    # binding.pry
     expect(team.team_info('18')).to eq(expected)
   end
 
