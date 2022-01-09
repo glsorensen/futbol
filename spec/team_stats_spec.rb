@@ -18,7 +18,7 @@ RSpec.describe TeamStats do
     expect(team).to be_a(TeamStats)
   end
 
-  it 'team atributes' do
+  it 'test 1 * team will hash requested team info' do
     expected = {
       "team_id" => "18",
       "franchise_id" => "34",
@@ -26,7 +26,6 @@ RSpec.describe TeamStats do
       "abbreviation" => "MIN",
       "link" => "/api/v1/teams/18"
     }
-    # binding.pry
     expect(team.team_info('18')).to eq(expected)
   end
 
@@ -46,7 +45,7 @@ RSpec.describe TeamStats do
     expect(team.sorted_games_array('6').size).to eq 510
   end
 
-  it 'can calculate average_win_percentage' do
+  it 'test 4* can calculate average_win_percentage' do
 
      expect(team.average_win_percentage('6')).to eq(0.49)
    end
@@ -56,10 +55,17 @@ RSpec.describe TeamStats do
      expect(team.hash_team_games_by_season('18').size).to eq(6)
    end
 
-   it 'can calculate a teams best_season' do
+   it 'test 2* can calculate a teams best_season' do
 
      expect(team.best_season("6")).to eq "20132014"
    end
+
+   it 'test 2* can calculate a teams worst_season' do
+
+     expect(team.worst_season("6")).to eq "20142015"
+   end
+
+
    it 'can calculate the most goals scored for a team' do
 
      expect(team.most_goals_scored("18")).to eq 7
