@@ -50,12 +50,6 @@ class TeamStats < HashData
     awp = (wins.to_f / total_games).to_f.round(2)
   end
 
-  # def average_win_hash_percentage(games)
-  #   total_games = games.count
-  #   wins = games.count { |game| game.result == "WIN"}
-  #   awhp = (wins.to_f / total_games).to_f.round(2)
-  # end
-
   def best_season(team_id)
     h = hash_team_games_by_season(team_id)
     wins_hashed = {}
@@ -88,6 +82,12 @@ end
 # binding.pry
 #
 # p
+
+# def average_win_hash_percentage(games)
+#   total_games = games.count
+#   wins = games.count { |game| game.result == "WIN"}
+#   awhp = (wins.to_f / total_games).to_f.round(2)
+# end
 # team_games = @game_teams.find_all { |game| game.team_id == team_id}
 # team_games_by_season = team_games.group_by { |game| game.season}
 # losses = team_games.count { |game| game.result == "LOSS"}

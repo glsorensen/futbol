@@ -30,6 +30,10 @@ RSpec.describe TeamStats do
     expect(team.team_info('18')).to eq(expected)
   end
 
+  it 'filter games_teams by team_id' do
+    expect(team.games_filter_game('6').size).to eq 510
+  end
+
   it 'array of games ids played' do
     expect(team.game_ids('6').size).to eq 510
   end
