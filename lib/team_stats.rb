@@ -30,6 +30,12 @@ class TeamStats < HashData
     awp = (wins.to_f / total_games).to_f.round(2)
   end
 
+  def most_goals_scored(team_id)
+    games_played = @game_teams.find_all {|team| team.team_id == team_id}
+    max_game = games_played.max_by {|game| game.goals}
+    max_game.goals.to_i
+  end
+
 end
 
 # games_played = @game_teams.find_all {|team| team.team_id == team_id}
