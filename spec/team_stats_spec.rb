@@ -124,7 +124,7 @@ RSpec.describe TeamStats do
      expect(team.fewest_goals_scored("18")).to eq 0
    end
 
-   it 'can create a hash of a given teams games by team' do
+   it 'can create a hash of games for a slected team' do
      expect(team.select_team_games_hash("18").size).to eq 31
    end
 

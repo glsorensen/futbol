@@ -116,7 +116,8 @@ class TeamStats < HashData
     add_home_games = ab.each do |game|
       if games_hash.has_key?(game.home_team_id) ; games_hash[game.home_team_id] << game
     end
-  games_hash
+  return games_hash
+  # binding.pry
   end
 end
 
