@@ -82,6 +82,9 @@ class TeamStats < HashData
     max_game.goals.to_i
   end
 
+  def favorite_opponent
+  end 
+
 end
 # games_by_season = b.filter do |season, games|
 #   games.filter {|game| game_id.include?(game.game_id)}

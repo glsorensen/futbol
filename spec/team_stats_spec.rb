@@ -80,4 +80,8 @@ RSpec.describe TeamStats do
 
      expect(team.fewest_goals_scored("18")).to eq 0
    end
+
+   it 'can calculate a teams favorite_opponent' do
+     expect(team.favorite_opponent("18")).to eq "DC United"
+   end 
 end
