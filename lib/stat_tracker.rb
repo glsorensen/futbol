@@ -72,28 +72,28 @@ class StatTracker
       #league_statistics
     end
 
-    def winningest_coach
-      #season_statistics
+    def winningest_coach(season_id)
+      @season_stats.winningest_coach(season_id)
     end
 
     def worst_coach
-      #season_statistics
+      @season_stats.losingest_coach(season_id)
     end
 
     def most_accurrate_team
-      #season_statistics
+      @season_stats.scoringest_team(season_id)
     end
 
     def least_accurate_team
-      #season_statistics
+      @season_stats.missingest_team(season_id)
     end
 
     def most_tackles
-      #season_statistics
+      @season_stats.tackliest_team(season_id)
     end
 
     def fewest_tackles
-      #season_statistics
+      @season_stats.untackliest_team(season_id)
     end
 
     def team_info

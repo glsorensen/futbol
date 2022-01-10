@@ -1,7 +1,7 @@
 require './lib/season_stats'
 require 'csv'
+require './lib/futbol_team.rb'
 require './lib/coach'
-require './lib/team.rb'
 require 'pry'
 RSpec.describe do
   let(:game_path) {'./data/games_sample.csv'}
@@ -16,16 +16,6 @@ RSpec.describe do
 
   it 'exists' do
     expect(season_stats).to be_a SeasonStats
-  end
-
-  xit "initializes" do
-    expect(season_stats.games).to eq(game_path)
-    expect(season_stats.teams).to eq(team_path)
-    expect(season_stats.game_teams).to eq(game_teams_path)
-  end
-
-  xit "parse CSVs" do
-    expect(season_stats.parse(season_stats.games)).to eq(game_path)
   end
 
   it "can find game_ids based on season" do
@@ -66,11 +56,11 @@ RSpec.describe do
   end
 
   it "finds winningest coach" do
-    expect(season_stats.winningest_coach).to eq("Joel Quenneville")
+    expect(season_stats.winningest_coach("20122013")).to eq("Joel Quenneville")
   end
 
   it "finds losingest coach" do
-    expect(season_stats.losingest_coach).to eq("John Tortorella")
+    expect(season_stats.losingest_coach("20122013")).to eq("John Tortorella")
   end
 
   it "creates an array of team classes" do
@@ -87,10 +77,23 @@ RSpec.describe do
   end
 
   it "finds the team that scores the most of their shots" do
-    expect(season_stats.scoringest_team).to eq("LA Galaxy")
+    expect(season_stats.scoringest_team("20122013")).to eq("LA Galaxy")
   end
 
   it "finds the team that scores the least of their shots" do
-    expect(season_stats.missingest_team).to eq("New England Revolution")
+    expect(season_stats.missingest_team("20122013")).to eq("New England Revolution")
+  end
+
+  it "it sorts by number of tackles" do
+    expect(season_stats.sort_by_tackles[0].team_id).to eq("16")
+    expect(season_stats.sort_by_tackles[-1].team_id).to eq("3")
+  end
+
+  it "finds the team with the most tackles" do
+    expect(season_stats.tackliest_team("20122013")).to eq("Houston Dynamo")
+  end
+
+  it "finds the team with the fewest tackles" do
+    expect(season_stats.untackliest_team("20122013")).to eq("New England Revolution")
   end
 end

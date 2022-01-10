@@ -1,20 +1,43 @@
-require './spec/spec_helper'
+require './lib/league_stats'
+require 'csv'
+require 'pry'
 
-RSpec.describe 'League' do
-  let(:games) {'./data/games.csv'}
-    let(:teams) {'./data/teams.csv'}
-    let(:game_teams) {'./data/game_teams.csv'}
-    let(:data) {{
-          :games => games,
-          :teams => teams,
-          :game_teams => game_teams
-      }}
+RSpec.describe do
+  let(:game_path) {'./data/games_sample.csv'}
+  let(:team_path) {'./data/teams.csv'}
+  let(:game_teams_path) {'./data/game_teams_sample.csv'}
+  let(:locations) {{
+    games: game_path,
+    teams: team_path,
+    game_teams: game_teams_path
+  }}
+  let(:league_stats) {LeagueStats.new(locations)}
 
-    let(:league) {LeagueStats.new(data)}
-
-    it 'exists' do
-
-        require 'pry'; binding.pry
-    end
-
+  it "can filter by location" do
+    league_stats.location_rows("home")
   end
+
+  it "can find find teams scores by location" do
+    expect(league_stats.team_scores_at_location("away").length).to eq(11)
+  end
+
+  it "can find the highest scoring home team" do
+    expect(league_stats.highest_score("home")).to eq("FC Dallas")
+  end
+
+  it "can find the lowest_scoring home team" do
+    expect(league_stats.lowest_score("home")).to eq("Sporting Kansas City")
+  end
+
+  it "can find the lowest_scoring away team" do
+    expect(league_stats.lowest_score("away")).to eq("Orlando City SC")
+  end
+
+  it "can find the highest scoring away team" do
+    expect(league_stats.highest_score("away")).to eq("North Carolina Courage")
+  end
+
+  it "can find the highest scoring team" do
+    expect(league_stats.highest_score("home" || "away"))
+  end
+end

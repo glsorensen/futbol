@@ -18,6 +18,14 @@ class HashData
   @link_team_id_to_team_name = CSV.read(data[:teams], headers: true, header_converters: :symbol).each { |row| @team_id[row[:team_id]] = row[:teamname] }
 end
 
+def name_convert(team_id)
+  @teams.each do |row|
+    if row[:team_id] == team_id
+      return row[:teamname]
+    end
+  end
+end
+
 def merge_hash
   @team_names.transform_values { |value| value = @hoa }
 end
