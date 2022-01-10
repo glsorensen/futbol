@@ -1,11 +1,12 @@
-require './spec/spec_helper'
-
+require './lib/season_stats'
+require 'csv'
+require './lib/coach'
+require './lib/team.rb'
+require 'pry'
 RSpec.describe do
   let(:game_path) {'./data/games_sample.csv'}
   let(:team_path) {'./data/teams.csv'}
   let(:game_teams_path) {'./data/game_teams_sample.csv'}
-  let(:baby_games) {'./data/baby_games.csv'}
-  let(:baby_data) {'./data/baby_data.csv'}
   let(:locations) {{
     games: game_path,
     teams: team_path,
@@ -17,7 +18,7 @@ RSpec.describe do
     expect(season_stats).to be_a SeasonStats
   end
 
-  it "initializes" do
+  xit "initializes" do
     expect(season_stats.games).to eq(game_path)
     expect(season_stats.teams).to eq(team_path)
     expect(season_stats.game_teams).to eq(game_teams_path)
@@ -55,17 +56,7 @@ RSpec.describe do
     expect(season_stats.get_season_rows(:game_id).size).to eq(7)
   end
 
-  it "gets coaches array" do
-    expected = ["John Tortorella", "Claude Julien", "Mike Babcock", "Joel Quenneville", "Mike Yeo"]
-
-    expect(season_stats.get_coaches_arr).to eq(expected)
-  end
-
-  it "transforms coaches array to coach classes" do
-    expect(season_stats.coach_classes[0]).to be_a(Coach)
-  end
-
-  it "records coaches records" do
+  it "creates array of coaches records" do
     expect(season_stats.coach_records[0].games).to eq(2)
   end
 
@@ -80,5 +71,26 @@ RSpec.describe do
 
   it "finds losingest coach" do
     expect(season_stats.losingest_coach).to eq("John Tortorella")
+  end
+
+  it "creates an array of team classes" do
+    expect(season_stats.team_data[0].goals).to eq(4)
+  end
+
+  it "sorts by goal percentage" do
+    expect(season_stats.sort_by_goal_percent[0].team_id).to eq("16")
+    expect(season_stats.sort_by_goal_percent[-1].team_id).to eq("17")
+  end
+
+  it "can convert team ids into team names" do
+    expect(season_stats.name_convert("1")).to eq("Atlanta United")
+  end
+
+  it "finds the team that scores the most of their shots" do
+    expect(season_stats.scoringest_team).to eq("LA Galaxy")
+  end
+
+  it "finds the team that scores the least of their shots" do
+    expect(season_stats.missingest_team).to eq("New England Revolution")
   end
 end
