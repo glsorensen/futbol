@@ -5,7 +5,7 @@ class StatTracker
   def initialize(data_location)
     @hash_data = HashData.new(data_location)
     # @game_stats = GameStats.new
-    # @league_stats = LeagueStats.new
+    @league_stats = LeagueStats.new(data_location)
     # @team_stats = TeamStats.new
     # @season_stats = SeasonStats.new
 
@@ -44,7 +44,7 @@ class StatTracker
     end
 
     def count_of_teams
-      #game_statistic
+      @league_stats.league_count
     end
 
     def best_offense
