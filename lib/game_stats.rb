@@ -30,22 +30,26 @@ class GameStats < HashData
 
   def count_of_games_by_season
     games_per_season = @games.group_by {|game| game[:season]}
-<<<<<<< HEAD
-    games_per_season.transform_values! {|value| value.count} 
-=======
     games_per_season.transform_values! {|value| value.count}
->>>>>>> 42393fafff27ed9031e86a00dc40a975a3ee9d00
   end
 
   def average_goals_per_game
     total_goals = total_goals_each_game.sum
     (total_goals / @games[:game_id].count.to_f).round(2)
-    # require 'pry' ; binding.pry
   end
 
   def average_goals_by_season
+    goals = []
     games_per_season = @games.group_by {|game| game[:season]}
-    #game_statistic
+    goals << away = games_per_season.map {|season, game| game.map {|game| game.values_at[6].to_f}.inject(:+)}
+    goals << home = games_per_season.map {|season, game| game.map {|game| game.values_at[7].to_f}.inject(:+)}
+    total_goals_by_season = goals.transpose.map(&:sum)
+    total_games_by_season = games_per_season.map {|season, game| game.map {|game| game.values_at[0]}.count}
+    average_goals_per_game_season = total_goals_by_season.zip(total_games_by_season).map {|totals| totals.inject(:/).round(2)}
+    hash_of_average_goals_season = Hash[games_per_season.keys.zip(average_goals_per_game_season)]
   end
-
 end
+
+# binding.pry
+# games_per_season["20122013"][0][:home_goals]
+#game_statistic
