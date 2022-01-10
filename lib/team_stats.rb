@@ -82,8 +82,21 @@ class TeamStats < HashData
     max_game.goals.to_i
   end
 
-  def favorite_opponent
-  end 
+  def favorite_opponent(team_id)
+    ab = @games.filter {|game| game.away_team_id == team_id || game.home_team_id == team_id}
+    
+    binding.pry
+    # opponent_array = []
+    # @games.map do |game|
+    #   opponent_array << unless game.away_team_id || game.home_team_id
+
+  end
+
+  # return unless ship_fits_within?(ship, selected_coordinates)
+  #   # TODO: rename valid_placement_overlapping
+  #   return unless valid_placement_overlapping?(ship, selected_coordinates))
+  #   return true if abc_placement?(ship, selected_coordinates)
+  #   return true if numerical_placement?(ship, selected_coordinates)
 
 end
 # games_by_season = b.filter do |season, games|
