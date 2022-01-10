@@ -32,16 +32,21 @@ class TeamStats < HashData
     opponent_array.uniq
   end
 
-  # def opponent_awp_hash
-  #   ab = opponent_array(team_id)
-  #   opponent_awp_hash = {}
-  #   calculate_opponent_average_win_percentage = ab.map do |o_team|
-  #     opponent_awp_hash[o_team] = o_team.average_win_percentage
-  #   end
-  # binding.pry
-  # end
+  def average_win_percentage(team_id)
+    a = game_teams_filtered(team_id)
+    total_games = a.size
+    wins = a.count { |game| game.result == "WIN"}
+    awp = (wins.to_f / total_games).to_f.round(2)
+  end
 
-
+  def opponent_awp_hash(team_id)
+    ab = opponent_array(team_id)
+    opponent_awp_hash = {}
+    calculate_opponent_average_win_percentage = ab.map do |o_team|
+      opponent_awp_hash[o_team] = average_win_percentage(o_team)
+    end
+    opponent_awp_hash
+  end
 
   def team_info(team_id)
     choosen_team = @teams.select {|team| team.team_id == team_id}
@@ -69,12 +74,7 @@ class TeamStats < HashData
     hashed_by_season = flattened_game_array.group_by {|game| game[1].season}
   end
 
-  def average_win_percentage(team_id)
-    a = game_teams_filtered(team_id)
-    total_games = a.size
-    wins = a.count { |game| game.result == "WIN"}
-    awp = (wins.to_f / total_games).to_f.round(2)
-  end
+
 
   def best_season(team_id)
     h = hash_team_games_by_season(team_id)
@@ -122,7 +122,7 @@ class TeamStats < HashData
     #   opponent_array << unless game.away_team_id || game.home_team_id
 
   end
-end 
+end
 
   # return unless ship_fits_within?(ship, selected_coordinates)
   #   # TODO: rename valid_placement_overlapping
