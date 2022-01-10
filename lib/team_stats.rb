@@ -84,14 +84,20 @@ class TeamStats < HashData
 
   def  fewest_goals_scored(team_id)
     a = game_teams_filtered(team_id)
-    max_game = a.min_by {|game| game.goals}
     max_game.goals.to_i
+    max_game = a.min_by {|game| game.goals}
   end
 
   def favorite_opponent(team_id)
     ab = games_filtered(team_id)
-    #
-    # binding.pry
+    opponent_array = []
+    ab.filter.map do |game|
+      opponent_array << game.home_team_id if game.home_team_id != team_id
+      opponent_array << game.away_team_id if game.away_team_id != team_id
+    end
+
+    binding.pry
+  end
     # opponent_array = []
     # @games.map do |game|
     #   opponent_array << unless game.away_team_id || game.home_team_id
@@ -103,8 +109,7 @@ class TeamStats < HashData
   #   return unless valid_placement_overlapping?(ship, selected_coordinates))
   #   return true if abc_placement?(ship, selected_coordinates)
   #   return true if numerical_placement?(ship, selected_coordinates)
-
-end
+  
 # games_by_season = b.filter do |season, games|
 #   games.filter {|game| game_id.include?(game.game_id)}
 # game_teams_filtered = @game_teams.find_all {|team| team.team_id == team_id}
