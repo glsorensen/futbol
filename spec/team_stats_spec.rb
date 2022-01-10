@@ -32,7 +32,11 @@ RSpec.describe TeamStats do
 
   it 'filter games_teams by team_id' do
 
-    expect(team.games_filter_game('6').size).to eq 510
+    expect(team.game_teams_filtered('6').size).to eq 510
+  end
+
+  it 'filter games by team id' do
+    expect(team.games_filtered('18').size).to eq 513
   end
 
   it 'array of games ids played' do
@@ -42,7 +46,7 @@ RSpec.describe TeamStats do
 
   it 'can filter game_teams using game ids array' do
 
-    expect(team.games_filter_game('6').size).to eq 510
+    expect(team.games_filter_game_id('6').size).to eq 510
   end
 
   it 'can create a merged array of game_teams and games ' do
@@ -81,7 +85,7 @@ RSpec.describe TeamStats do
      expect(team.fewest_goals_scored("18")).to eq 0
    end
 
-   it 'can calculate a teams favorite_opponent' do
+   xit 'can calculate a teams favorite_opponent' do
      expect(team.favorite_opponent("18")).to eq "DC United"
-   end 
+   end
 end
