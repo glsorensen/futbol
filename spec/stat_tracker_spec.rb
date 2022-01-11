@@ -1,21 +1,7 @@
-require './spec/spec_helper'
+require './lib/game_stats.rb'
+require './lib/hash_data.rb'
+require './lib/stat_tracker.rb'
 
-<<<<<<< HEAD
-RSpec.describe 'StatTracker' do
-  let(:games) {'./data/games.csv'}
-  let(:teams) {'./data/teams.csv'}
-  let(:game_teams) {'./data/game_teams.csv'}
-  let(:data) {{
-        :games => games,
-        :teams => teams,
-        :game_teams => game_teams
-    }}
- let(:stat_tracker) {StatTracker.new(data)}
-
-  it 'exists' do
-    require 'pry' ; binding.pry
-    expect(stat_tracker).to be_a(StatTracker)
-=======
 RSpec.describe StatTracker do
   before(:all) do
     game_path = './data/games.csv'
@@ -29,7 +15,6 @@ RSpec.describe StatTracker do
     }
 
     @stat_tracker = StatTracker.new(locations)
->>>>>>> 42393fafff27ed9031e86a00dc40a975a3ee9d00
   end
 
   it "exists" do
