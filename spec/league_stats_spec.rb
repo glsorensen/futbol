@@ -13,6 +13,18 @@ RSpec.describe do
   }}
   let(:league_stats) {LeagueStats.new(locations)}
 
+  it "records scores of all games" do
+    expect(league_stats.team_scores_total.values.flatten.length).to eq 33
+  end
+
+  it "finds highest scoring team" do
+    expect(league_stats.highest_scoring).to eq("North Carolina Courage")
+  end
+
+  it "finds the lowest_scoring team" do
+    expect(league_stats.lowest_scoring).to eq("New York City FC")
+  end
+
   it "can filter by location" do
     league_stats.location_rows("home")
   end
@@ -22,22 +34,18 @@ RSpec.describe do
   end
 
   it "can find the highest scoring home team" do
-    expect(league_stats.highest_score("home")).to eq("FC Dallas")
+    expect(league_stats.highest_score_home).to eq("FC Dallas")
   end
 
   it "can find the lowest_scoring home team" do
-    expect(league_stats.lowest_score("home")).to eq("Sporting Kansas City")
+    expect(league_stats.lowest_score_home).to eq("Sporting Kansas City")
   end
 
   it "can find the lowest_scoring away team" do
-    expect(league_stats.lowest_score("away")).to eq("Orlando City SC")
+    expect(league_stats.lowest_score_away).to eq("Orlando City SC")
   end
 
   it "can find the highest scoring away team" do
-    expect(league_stats.highest_score("away")).to eq("North Carolina Courage")
-  end
-
-  it "can find the highest scoring team" do
-    expect(league_stats.highest_score("home" || "away"))
+    expect(league_stats.highest_score_away).to eq("North Carolina Courage")
   end
 end

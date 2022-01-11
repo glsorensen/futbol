@@ -15,6 +15,7 @@ RSpec.describe 'HashData' do
   let(:hash_data) {HashData.new(data)}
 
   it 'exists' do
+    binding.pry
     expect(hash_data).to be_a(HashData)
   end
 

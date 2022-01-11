@@ -9,7 +9,7 @@ class StatTracker
     @game_stats = GameStats.new(data_location)
     @league_stats = LeagueStats.new(data_location)
     # @team_stats = TeamStats.new
-    # @season_stats = SeasonStats.new
+    @season_stats = SeasonStats.new
   end
 
   def highest_total_score
@@ -41,7 +41,7 @@ class StatTracker
  end
 
  def average_goals_by_season
-   #game_statistic
+   @game_stats.average_goals_by_season
  end
 
   def count_of_teams
@@ -49,27 +49,27 @@ class StatTracker
   end
 
   def best_offense
-    #league_statistics
+    @league_stats.highest_scoring
   end
 
   def worst_offense
-    #league_statistics
+    @league_stats.lowest_scoring
   end
 
   def highest_scoring_visitor
-    #league_statistics
+    @league_stats.highest_score_away
   end
 
   def highest_scoring_home_team
-    #league_statistics
+    @league_stats.highest_score_home
   end
 
   def lowest_scoring_visitor
-    #league_statistics
+    @league_stats.lowest_score_away
   end
 
   def lowest_scoring_home_team
-    #league_statistics
+    @league_stats.lowest_score_home
   end
 
   def winningest_coach(season_id)
