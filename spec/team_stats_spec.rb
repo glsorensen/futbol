@@ -124,12 +124,13 @@ RSpec.describe TeamStats do
      expect(team.fewest_goals_scored("18")).to eq 0
    end
 
-   it 'can create a hash of games for a slected team' do
+   xit 'can create a hash of games for a slected team' do
+     # binding.pry
      expect(team.select_team_games_hash("18").size).to eq 31
    end
 
-   xit 'can calculate a teams favorite_opponent' do
+   it 'can calculate a teams favorite_opponent' do
 
-     expect(team.favorite_opponent("18")).to eq "DC United"
+     expect(team.best_oppo("18")).to eq "DC United"
    end
 end
