@@ -131,6 +131,6 @@ RSpec.describe TeamStats do
 
    it 'can calculate a teams favorite_opponent' do
 
-     expect(team.best_oppo("18")).to eq "DC United"
+     expect(team.best_opponent("18")).to eq "DC United"
    end
 end

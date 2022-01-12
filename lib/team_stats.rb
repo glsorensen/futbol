@@ -5,11 +5,11 @@ class TeamStats < HashData
 
 
   def game_teams_filtered(team_id)
-    a = @game_teams.find_all {|team| team.team_id == team_id}
+    @game_teams.find_all {|team| team.team_id == team_id}
   end
 
   def games_filtered(team_id)
-    ab = @games.filter {|game| game.away_team_id == team_id || game.home_team_id == team_id}
+    @games.filter {|game| game.away_team_id == team_id || game.home_team_id == team_id}
   end
 
   def game_ids(team_id)
@@ -121,26 +121,38 @@ class TeamStats < HashData
   end
   end
 
-  def who_won(array_of_games)
-    x = array_of_games
+  def who_won(team_id)
+    games_hashed_by_opponent = select_team_games_hash(team_id)
+    winners = {}
+    team_won = []
+    opponent_won = []
+    winners[opponent] = [[team_won],[opponent_won]]
+
+    each_winner = games_hashed_by_opponent.map do |opponent, games|
+      games.each do |game|
+        if game.away_goals.to_i > game.home_goals.to_i && game.away_team_id == team_id
+        winners[opponent] << team_won game
+          team_won << game
+        elsif game.away_goals.to_i > game.home_goals.to_i && game.away_team_id != team_id
+          opponent_won << game
+        elsif game.home_goals.to_i > game.away_goals.to_i && game.home_team_id == team_id
+          team_won << game
+        elsif game.home_goals.to_i > game.away_goals.to_i && game.home_team_id != team_id
+          opponent_won << game
+          else
+            "there was an error"
+          end
+        end
+        print "  Team won #{team_won.size} games AND Opponent won #{opponent_won.size}.  "
+      end
   end
 
 
 
-  def best_oppo(team_id)
-  games_hashed_by_opponent = select_team_games_hash(team_id)
-  wins_hashed = {}
+  def best_opponent(team_id)
+    who_won(team_id)
+  binding.pry
   games_hashed_by_opponent.each do |opponent, games|
-    wins_hashed[opponent] ||= []
-    games.select do |game|
-                    wins_hashed[opponent] <<  game.away_goals
-                    wins_hashed[opponent] <<  game.away_team_id
-                    wins_hashed[opponent] <<  game.home_goals
-                    wins_hashed[opponent] <<  game.home_team_id
-                  end.flatten
-      p
-    end
-    binding.pry
-  end
-
+end
+end
 end
