@@ -1,5 +1,5 @@
 #require './spec/spec_helper'
-require './lib/hash_data'
+require_relative './hash_data'
 
 class LeagueStats < HashData
 
@@ -28,7 +28,6 @@ class LeagueStats < HashData
     lowest = team_scores_total.min_by do |key, value|
       value.sum.to_f / value.length
     end
-    binding.pry
     name_convert(lowest[0])
   end
 

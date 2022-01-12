@@ -1,4 +1,4 @@
-require './lib/hash_data'
+require_relative './hash_data'
 
 class SeasonStats < HashData
   attr_reader :season_data, :game_ids

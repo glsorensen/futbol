@@ -11,7 +11,6 @@ RSpec.describe 'HashData' do
         :teams => teams_data,
         :game_teams => game_teams_data
     }}
-
   let(:hash_data) {HashData.new(data)}
 
   it 'exists' do
