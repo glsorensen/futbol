@@ -14,21 +14,6 @@ RSpec.describe 'HashData' do
   let(:hash_data) {HashData.new(data)}
 
   it 'exists' do
-    binding.pry
     expect(hash_data).to be_a(HashData)
   end
-
-  it 'creates Games class objects' do
-    binding.pry
-    expect(hash_data.games).to be_a(Games)
-  end
-
-  xit 'creates Teams class objects' do
-    expect(hash_data.teams).to be_a(Teams)
-  end
-
-  xit 'creates GameTeams class objects' do
-    expect(hash_data.game_teams).to be_a(GameTeams)
-  end
-
 end

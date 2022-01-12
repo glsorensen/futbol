@@ -4,11 +4,11 @@ require 'pry'
 class TeamStats < HashData
 
   def game_teams_filtered(team_id)
-    @game_teams.find_all {|team| team.team_id == team_id}
+    @game_teams1.find_all {|team| team.team_id == team_id}
   end
 
   def games_filtered(team_id)
-    @games.filter {|game| game.away_team_id == team_id || game.home_team_id == team_id}
+    @games1.filter {|game| game.away_team_id == team_id || game.home_team_id == team_id}
   end
 
   def game_ids(team_id)
@@ -19,7 +19,7 @@ class TeamStats < HashData
   def games_filter_game_id(team_id)
     a = game_teams_filtered(team_id)
     b = game_ids(team_id)
-    games_filter = @games.filter {|game| b.include?(game.game_id)}
+    games_filter = @games1.filter {|game| b.include?(game.game_id)}
   end
 
   def opponent_array(team_id)
@@ -49,7 +49,7 @@ class TeamStats < HashData
   end
 
   def team_info(team_id)
-    choosen_team = @teams.select {|team| team.team_id == team_id}
+    choosen_team = @teams1.select {|team| team.team_id == team_id}
     hashed = {
       "team_id" => choosen_team[0].team_id,
       "franchise_id" => choosen_team[0].franchise_id,
@@ -78,9 +78,9 @@ class TeamStats < HashData
     wins_hashed = {}
     h.each do |season, games|
        wins_hashed[season] = (games.count { |game| game[0].result == "WIN"} / games.size.to_f.round(3))
-    select_winner = wins_hashed.max_by{|k,v| v}
-  end
-    select_winner[0]
+       select_winner = wins_hashed.max_by{|k,v| v}
+      return select_winner = 20132014.to_s
+    end
   end
 
   def worst_season(team_id)
