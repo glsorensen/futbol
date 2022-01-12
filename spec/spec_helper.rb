@@ -1,2 +1,12 @@
 require 'simplecov'
+# require 'pry'
+# require 'csv'
 SimpleCov.start
+# require './lib/stat_tracker.rb'
+# require './lib/games.rb'
+# require './lib/teams.rb'
+# require './lib/game_teams.rb'
+# require './lib/team_stats.rb'
+# require './lib/league_stats.rb'
+# require './lib/season_stats.rb'
+# require './lib/game_stats.rb'
